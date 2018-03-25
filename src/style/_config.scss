@@ -1,0 +1,35 @@
+// colours
+$color-black: #333;
+$color-grey-mid: lighten($color-black, 20%);
+$color-grey-light: lighten($color-black, 60%);
+
+$color-white: #FDFDFF;
+
+$color-pink: #F0288C;
+$color-pink-mid: lighten($color-pink, 10%);
+$color-pink-light: lighten($color-pink, 20%);
+$color-pink-white: lighten($color-pink, 35%);
+
+$color-purple: #8628F0;
+$color-purple-mid: lighten($color-purple, 10%);
+$color-purple-light: lighten($color-purple, 20%);
+$color-purple-white: lighten($color-purple, 35%);
+
+$color-cyan: #2AEAF0;
+$color-cyan-mid: lighten($color-cyan, 10%);
+$color-cyan-light: lighten($color-cyan, 20%);
+$color-cyan-white: lighten($color-cyan, 35%);
+
+$color-green: #28F075;
+$color-green-mid: lighten($color-green, 10%);
+$color-green-light: lighten($color-green, 20%);
+$color-green-white: lighten($color-green, 35%);
+
+$color-yellow: #F0F028;
+$color-yellow-mid: lighten($color-yellow, 10%);
+$color-yellow-light: lighten($color-yellow, 20%);
+$color-yellow-white: lighten($color-yellow, 35%);
+
+//font
+$font-size-base: 16px;
+
