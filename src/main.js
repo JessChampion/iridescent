@@ -1,11 +1,12 @@
 import Vue from 'vue';
-import LuminescenceApp from './LuminescenceApp.vue';
+
+import IridescentApp from './IridescentApp';
 
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  components: { LuminescenceApp },
-  template: '<LuminescenceApp/>'
+  components: { IridescentApp },
+  template: '<IridescentApp/>'
 });
