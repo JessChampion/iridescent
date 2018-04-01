@@ -12,6 +12,10 @@
 </template>
 
 <script>
+  const CLASS_OPTIONS = {
+    a: 'one',
+    b: 'two'
+  };
   const SHAPE_INDEXES = [1, 2, 3];
   const SHAPE_TYPES = [1, 2];
   const MODIFIER = { delay: 100 };
@@ -42,7 +46,7 @@
       iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
       shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
     },
-    direction: (index === lastIndex(SHAPE_INDEXES)) ? 'one' : 'two',
+    direction: (index === lastIndex(SHAPE_INDEXES)) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
     duration: {
       iridescent: randomNumberInRange(RANGE.duration.iridescent),
       shimmer: randomNumberInRange(RANGE.duration.shimmer)
@@ -70,7 +74,7 @@
   const getShapes = () => position(flatten(SHAPE_TYPES.map(shapeFactory)));
 
   export default {
-    name: 'IridescentBackdropDisks',
+    name: 'IridescentBackdropPlanes',
     data() {
       const shapes = getShapes();
       return {
@@ -163,7 +167,6 @@
               transparentize($color-white, 0),
               transparentize($color-white, 0),
               transparentize($color-white, 0.3),
-              transparentize($color-white, 1),
               transparentize($color-white, 1),
               transparentize($color-white, 1)
       );

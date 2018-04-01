@@ -14,6 +14,10 @@
 <script>
   const BEAM_INDEXES = [1, 2, 3];
   const BEAM_TYPES = [1, 2];
+  const CLASS_OPTIONS = {
+    a: 'left',
+    b: 'right'
+  };
   const MODIFIER = { delay: 100 };
   const RANGE = {
     delay: {
@@ -35,7 +39,7 @@
       iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
       shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
     },
-    direction: (index === lastIndex(BEAM_INDEXES)) ? 'left' : 'right',
+    direction: (index === lastIndex(BEAM_INDEXES)) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,//? 'left' : 'right',
     duration: {
       iridescent: randomNumberInRange(RANGE.duration.iridescent),
       shimmer: randomNumberInRange(RANGE.duration.shimmer)
@@ -54,9 +58,10 @@
   const getBeams = () => position(flatten(BEAM_TYPES.map(beamFactory)));
 
   export default {
-    name: 'IridescentBackdropBeams',
+    name: 'IridescentBackdrop',
     data() {
       const beams = getBeams();
+      console.log(beams);
       return {
         beams
       };

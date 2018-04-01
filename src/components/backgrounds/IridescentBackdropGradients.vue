@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'IridescentBackdropGradients',
+    name: 'IridescentBackdropGradients.vue',
   };
 </script>
 

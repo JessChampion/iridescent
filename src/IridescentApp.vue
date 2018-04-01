@@ -1,18 +1,28 @@
 <template>
   <div class="main">
-    <iridescent-backdrop class="main__background"/>
-    <div class="main__content">
-      <h1>jess makes things</h1>
+    <router-view class="main__background"></router-view>
+    <div class="main__content demo">
+      <DemoControls class="demo__controls"/>
     </div>
   </div>
 </template>
 
 <script>
-  import IridescentBackdrop from './components/background/IridescentBackdropBeams';
+  import DemoControls from './components/controls/DemoControls';
+  import IridescentBackdropBeams from './components/backgrounds/IridescentBackdropBeams';
+  import IridescentBackdropDisks from './components/backgrounds/IridescentBackdropDisks';
+  import IridescentBackdropGradients from './components/backgrounds/IridescentBackdropGradients';
+  import IridescentBackdropPlanes from './components/backgrounds/IridescentBackdropPlanes';
 
   export default {
     name: 'Iridescent',
-    components: { IridescentBackdrop },
+    components: {
+      DemoControls,
+      IridescentBackdropBeams,
+      IridescentBackdropDisks,
+      IridescentBackdropGradients,
+      IridescentBackdropPlanes
+    },
     data() {
       return {
         content: []
@@ -35,7 +45,6 @@
     }
 
     &__content {
-      //background: transparentize($color-white, 0.5);
       left: 0;
       height: calc(100vh - (2 * #{$size-gutter}rem));
       margin: #{$size-gutter}rem;
