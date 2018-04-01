@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <router-view class="main__background"></router-view>
+    <router-view class="main__background"/>
     <div class="main__content demo">
       <DemoControls class="demo__controls"/>
     </div>
@@ -53,6 +53,14 @@
       top: 0;
       width: calc(100vw - (2 * #{$size-gutter}rem));
       z-index: 2;
+    }
+  }
+
+  .demo {
+    &__controls {
+      max-width: 35rem;
+      margin: 0 auto;
+      width: 100%;
     }
   }
 </style>

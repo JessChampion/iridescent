@@ -60,110 +60,11 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 40);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var store = __webpack_require__(31)('wks');
-var uid = __webpack_require__(32);
-var Symbol = __webpack_require__(4).Symbol;
-var USE_SYMBOL = typeof Symbol == 'function';
-
-var $exports = module.exports = function (name) {
-  return store[name] || (store[name] =
-    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
-};
-
-$exports.store = store;
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -182,7 +83,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(43)
+var listToStyles = __webpack_require__(48)
 
 /*
 type StyleObject = {
@@ -391,7 +292,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -500,6 +401,105 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var store = __webpack_require__(33)('wks');
+var uid = __webpack_require__(34);
+var Symbol = __webpack_require__(4).Symbol;
+var USE_SYMBOL = typeof Symbol == 'function';
+
+var $exports = module.exports = function (name) {
+  return store[name] || (store[name] =
+    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
+};
+
+$exports.store = store;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
@@ -538,8 +538,8 @@ module.exports = __webpack_require__(9) ? function (object, key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(8);
-var IE8_DOM_DEFINE = __webpack_require__(53);
-var toPrimitive = __webpack_require__(54);
+var IE8_DOM_DEFINE = __webpack_require__(66);
+var toPrimitive = __webpack_require__(67);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -622,7 +622,7 @@ module.exports = g;
 
 exports.__esModule = true;
 
-var _assign = __webpack_require__(49);
+var _assign = __webpack_require__(62);
 
 var _assign2 = _interopRequireDefault(_assign);
 
@@ -648,7 +648,7 @@ exports.default = _assign2.default || function (target) {
 
 var global = __webpack_require__(4);
 var core = __webpack_require__(5);
-var ctx = __webpack_require__(24);
+var ctx = __webpack_require__(26);
 var hide = __webpack_require__(6);
 var PROTOTYPE = 'prototype';
 
@@ -772,8 +772,8 @@ module.exports = function (it) {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(31)('keys');
-var uid = __webpack_require__(32);
+var shared = __webpack_require__(33)('keys');
+var uid = __webpack_require__(34);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -799,7 +799,7 @@ module.exports = function (it) {
 
 exports.__esModule = true;
 
-var _from = __webpack_require__(61);
+var _from = __webpack_require__(74);
 
 var _from2 = _interopRequireDefault(_from);
 
@@ -11788,14 +11788,114 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(37).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(42).setImmediate))
 
 /***/ }),
 /* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return routes; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes__);
+
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
+
+var routes = [{
+  path: '/beams',
+  alias: '/',
+  name: 'Beams',
+  component: __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams___default.a
+}, {
+  path: '/disks',
+  name: 'Disks',
+  component: __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks___default.a
+}, {
+  path: '/gradients',
+  name: 'Gradients',
+  component: __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients___default.a
+}, {
+  path: '/planes',
+  name: 'Planes',
+  component: __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes___default.a
+}];
+
+/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
+  routes: routes
+}));
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(59)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(93)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/backgrounds/IridescentBackdropBeams.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2e27efaa", Component.options)
+  } else {
+    hotAPI.reload("data-v-2e27efaa", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(52);
+var aFunction = __webpack_require__(65);
 module.exports = function (fn, that, length) {
   aFunction(fn);
   if (that === undefined) return fn;
@@ -11817,7 +11917,7 @@ module.exports = function (fn, that, length) {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(14);
@@ -11830,12 +11930,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(56);
-var enumBugKeys = __webpack_require__(33);
+var $keys = __webpack_require__(69);
+var enumBugKeys = __webpack_require__(35);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -11843,11 +11943,11 @@ module.exports = Object.keys || function keys(O) {
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(28);
+var IObject = __webpack_require__(30);
 var defined = __webpack_require__(17);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -11855,11 +11955,11 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(29);
+var cof = __webpack_require__(31);
 // eslint-disable-next-line no-prototype-builtins
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
   return cof(it) == 'String' ? it.split('') : Object(it);
@@ -11867,7 +11967,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -11878,7 +11978,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -11890,7 +11990,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(4);
@@ -11902,7 +12002,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -11913,7 +12013,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -11923,12 +12023,12 @@ module.exports = (
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(7).f;
 var has = __webpack_require__(10);
-var TAG = __webpack_require__(0)('toStringTag');
+var TAG = __webpack_require__(2)('toStringTag');
 
 module.exports = function (it, tag, stat) {
   if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
@@ -11936,24 +12036,177 @@ module.exports = function (it, tag, stat) {
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(36);
-module.exports = __webpack_require__(99);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(94)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(96)
+/* template */
+var __vue_template__ = __webpack_require__(97)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/backgrounds/IridescentBackdropDisks.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-aa080b08", Component.options)
+  } else {
+    hotAPI.reload("data-v-aa080b08", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
-/* 36 */
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(98)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(100)
+/* template */
+var __vue_template__ = __webpack_require__(101)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/backgrounds/IridescentBackdropGradients.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-489d2dc9", Component.options)
+  } else {
+    hotAPI.reload("data-v-489d2dc9", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(102)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(104)
+/* template */
+var __vue_template__ = __webpack_require__(105)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/backgrounds/IridescentBackdropPlanes.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-21674201", Component.options)
+  } else {
+    hotAPI.reload("data-v-21674201", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(41);
+module.exports = __webpack_require__(109);
+
+
+/***/ }),
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IridescentApp__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IridescentApp__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__IridescentApp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__IridescentApp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__router__ = __webpack_require__(24);
 
 
 
@@ -11970,7 +12223,7 @@ new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 });
 
 /***/ }),
-/* 37 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var apply = Function.prototype.apply;
@@ -12023,7 +12276,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(38);
+__webpack_require__(43);
 // On some exotic environments, it's not clear which object `setimmeidate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -12037,7 +12290,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ }),
-/* 38 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -12227,10 +12480,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(39)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(44)))
 
 /***/ }),
-/* 39 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -12420,19 +12673,19 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 40 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(41)
+  __webpack_require__(46)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(44)
+var __vue_script__ = __webpack_require__(49)
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(108)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -12471,17 +12724,17 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 41 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(42);
+var content = __webpack_require__(47);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("54595628", content, false, {});
+var update = __webpack_require__(0)("54595628", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -12497,21 +12750,21 @@ if(false) {
 }
 
 /***/ }),
-/* 42 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n.main[data-v-7f989cbe] {\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100vw;\n}\n.main__background[data-v-7f989cbe] {\n    z-index: 0;\n}\n.main__content[data-v-7f989cbe] {\n    left: 0;\n    height: calc(100vh - (2 * 2rem));\n    margin: 2rem;\n    overflow: auto;\n    position: absolute;\n    top: 0;\n    width: calc(100vw - (2 * 2rem));\n    z-index: 2;\n}\n", ""]);
+exports.push([module.i, "\n.main[data-v-7f989cbe] {\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100vw;\n}\n.main__background[data-v-7f989cbe] {\n    z-index: 0;\n}\n.main__content[data-v-7f989cbe] {\n    left: 0;\n    height: calc(100vh - (2 * 2rem));\n    margin: 2rem;\n    overflow: auto;\n    position: absolute;\n    top: 0;\n    width: calc(100vw - (2 * 2rem));\n    z-index: 2;\n}\n.demo__controls[data-v-7f989cbe] {\n  max-width: 35rem;\n  margin: 0 auto;\n  width: 100%;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 43 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -12544,20 +12797,20 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 44 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_controls_DemoControls__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_controls_DemoControls__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_controls_DemoControls___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_controls_DemoControls__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_backgrounds_IridescentBackdropBeams__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_backgrounds_IridescentBackdropBeams__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_backgrounds_IridescentBackdropBeams___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_backgrounds_IridescentBackdropBeams__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropDisks__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropDisks__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropDisks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropDisks__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropGradients__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropGradients__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropGradients___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropGradients__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropPlanes__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropPlanes__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropPlanes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropPlanes__);
 //
 //
@@ -12592,25 +12845,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 45 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(46)
+  __webpack_require__(51)
 }
-var normalizeComponent = __webpack_require__(3)
+var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(48)
+var __vue_script__ = __webpack_require__(53)
 /* template */
-var __vue_template__ = __webpack_require__(80)
+var __vue_template__ = __webpack_require__(107)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = null
+var __vue_scopeId__ = "data-v-420e8fb2"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -12621,7 +12874,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "src/components/backgrounds/IridescentBackdropBeams.vue"
+Component.options.__file = "src/components/controls/DemoControls.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -12630,9 +12883,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-2e27efaa", Component.options)
+    hotAPI.createRecord("data-v-420e8fb2", Component.options)
   } else {
-    hotAPI.reload("data-v-2e27efaa", Component.options)
+    hotAPI.reload("data-v-420e8fb2", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -12640,1533 +12893,204 @@ if (false) {(function () {
 })()}
 
 module.exports = Component.exports
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(47);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("73984c5a", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e27efaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e27efaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .beam {\n    height: 100vh;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n    position: absolute;\n    top: 0;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .beam--glimmer-left {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-left, sheen;\n              animation-name: glimmer-left, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .beam--glimmer-right {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-right, sheen;\n              animation-name: glimmer-right, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@-webkit-keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@-webkit-keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@-webkit-keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 48 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var BEAM_INDEXES = [1, 2, 3];
-var BEAM_TYPES = [1, 2];
-var CLASS_OPTIONS = {
-  a: 'left',
-  b: 'right'
-};
-var MODIFIER = { delay: 100 };
-var RANGE = {
-  delay: {
-    iridescent: [1, 10],
-    shimmer: [3, 12]
-  },
-  duration: {
-    iridescent: [8, 12],
-    shimmer: [2, 5]
-  },
-  width: [5, 15]
-};
-
-var randomNumber = function randomNumber(min, max) {
-  return Math.floor(Math.random() * max) + min;
-};
-var randomNumberInRange = function randomNumberInRange(range) {
-  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
-};
-var lastIndex = function lastIndex(items) {
-  return items.length - 1;
-};
-var createBeam = function createBeam(index, type) {
-  return {
-    delay: {
-      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
-      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
-    },
-    direction: index === lastIndex(BEAM_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
-    duration: {
-      iridescent: randomNumberInRange(RANGE.duration.iridescent),
-      shimmer: randomNumberInRange(RANGE.duration.shimmer)
-    },
-    index: index,
-    type: type,
-    width: randomNumberInRange(RANGE.width)
-  };
-};
-var beamFactory = function beamFactory(type) {
-  return BEAM_INDEXES.map(function (index) {
-    return createBeam(type, index);
-  });
-};
-var flatten = function flatten(list) {
-  return list.reduce(function (a, b) {
-    return a.concat(b);
-  });
-};
-var position = function position(list) {
-  return list.map(function (item, index) {
-    var section = 100 / (list.length + 1);
-    var left = section * (index + 1);
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left });
-  });
-};
-var getBeams = function getBeams() {
-  return position(flatten(BEAM_TYPES.map(beamFactory)));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'IridescentBackdropBeams',
-  data: function data() {
-    var beams = getBeams();
-    return {
-      beams: beams
-    };
-  },
-
-  methods: {
-    getStyle: function getStyle(beam) {
-      var rules = ['animation-duration: ' + beam.duration.iridescent + 's, ' + beam.duration.shimmer + 's;', 'animation-delay: ' + beam.delay.iridescent + 'ms, ' + beam.delay.shimmer + 'ms;', 'left: ' + beam.left + 'vw;', 'width: ' + beam.width + 'vw;'];
-      return rules.join('');
-    },
-    getClasses: function getClasses(beam) {
-      return 'background__beam beam beam--type-' + beam.type + ' beam--glimmer-' + beam.direction;
-    }
-  }
-});
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(50), __esModule: true };
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(51);
-module.exports = __webpack_require__(5).Object.assign;
 
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(13);
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(55) });
-
+// load the styles
+var content = __webpack_require__(52);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(0)("ede9ae50", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-420e8fb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoControls.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-420e8fb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoControls.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 52 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function (it) {
-  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
-  return it;
-};
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.controls[data-v-420e8fb2] {\n  height: 100%;\n  width: 100%;\n}\n", ""]);
+
+// exports
 
 
 /***/ }),
 /* 53 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = !__webpack_require__(9) && !__webpack_require__(15)(function () {
-  return Object.defineProperty(__webpack_require__(25)('div'), 'a', { get: function () { return 7; } }).a != 7;
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DemoNavigation__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DemoNavigation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__DemoNavigation__);
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'DemoControls',
+  components: { DemoNavigation: __WEBPACK_IMPORTED_MODULE_0__DemoNavigation___default.a }
 });
-
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(14);
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function (it, S) {
-  if (!isObject(it)) return it;
-  var fn, val;
-  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
-  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
-  throw TypeError("Can't convert object to primitive value");
-};
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(55)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(57)
+/* template */
+var __vue_template__ = __webpack_require__(106)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-7b3fab10"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/controls/DemoNavigation.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-7b3fab10", Component.options)
+  } else {
+    hotAPI.reload("data-v-7b3fab10", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
 
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// style-loader: Adds some css to the DOM by adding a <style> tag
 
-// 19.1.2.1 Object.assign(target, source, ...)
-var getKeys = __webpack_require__(26);
-var gOPS = __webpack_require__(59);
-var pIE = __webpack_require__(60);
-var toObject = __webpack_require__(20);
-var IObject = __webpack_require__(28);
-var $assign = Object.assign;
-
-// should work with symbols and should have deterministic property order (V8 bug)
-module.exports = !$assign || __webpack_require__(15)(function () {
-  var A = {};
-  var B = {};
-  // eslint-disable-next-line no-undef
-  var S = Symbol();
-  var K = 'abcdefghijklmnopqrst';
-  A[S] = 7;
-  K.split('').forEach(function (k) { B[k] = k; });
-  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
-}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-  var T = toObject(target);
-  var aLen = arguments.length;
-  var index = 1;
-  var getSymbols = gOPS.f;
-  var isEnum = pIE.f;
-  while (aLen > index) {
-    var S = IObject(arguments[index++]);
-    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
-    var length = keys.length;
-    var j = 0;
-    var key;
-    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
-  } return T;
-} : $assign;
-
+// load the styles
+var content = __webpack_require__(56);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(0)("542a8945", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b3fab10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoNavigation.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b3fab10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoNavigation.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has = __webpack_require__(10);
-var toIObject = __webpack_require__(27);
-var arrayIndexOf = __webpack_require__(57)(false);
-var IE_PROTO = __webpack_require__(19)('IE_PROTO');
+exports = module.exports = __webpack_require__(3)(false);
+// imports
 
-module.exports = function (object, names) {
-  var O = toIObject(object);
-  var i = 0;
-  var result = [];
-  var key;
-  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
-  // Don't enum bug & hidden keys
-  while (names.length > i) if (has(O, key = names[i++])) {
-    ~arrayIndexOf(result, key) || result.push(key);
-  }
-  return result;
-};
+
+// module
+exports.push([module.i, "\n.navigation[data-v-7b3fab10] {\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n  height: 100%;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  width: 100%;\n}\n@media all and (min-width: 35rem) {\n.navigation[data-v-7b3fab10] {\n      -webkit-box-orient: horizontal;\n      -webkit-box-direction: normal;\n          -ms-flex-direction: row;\n              flex-direction: row;\n      -ms-flex-pack: distribute;\n          justify-content: space-around;\n}\n}\n.navigation__link[data-v-7b3fab10] {\n    background-color: rgba(255, 255, 255, 0.15);\n    border: 0.1rem rgba(64, 64, 64, 0.65) solid;\n    border-radius: 1rem;\n    color: #404040;\n    font-size: 1.2rem;\n    font-weight: 200;\n    line-height: 1.5;\n    margin: 0.5rem 0;\n    min-width: 4rem;\n    padding: 0.5rem 1.25rem 0.6rem;\n    text-transform: lowercase;\n    text-decoration: none;\n    text-align: center;\n}\n", ""]);
+
+// exports
 
 
 /***/ }),
 /* 57 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// false -> Array#indexOf
-// true  -> Array#includes
-var toIObject = __webpack_require__(27);
-var toLength = __webpack_require__(30);
-var toAbsoluteIndex = __webpack_require__(58);
-module.exports = function (IS_INCLUDES) {
-  return function ($this, el, fromIndex) {
-    var O = toIObject($this);
-    var length = toLength(O.length);
-    var index = toAbsoluteIndex(fromIndex, length);
-    var value;
-    // Array#includes uses SameValueZero equality algorithm
-    // eslint-disable-next-line no-self-compare
-    if (IS_INCLUDES && el != el) while (length > index) {
-      value = O[index++];
-      // eslint-disable-next-line no-self-compare
-      if (value != value) return true;
-    // Array#indexOf ignores holes, Array#includes - not
-    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
-      if (O[index] === el) return IS_INCLUDES || index || 0;
-    } return !IS_INCLUDES && -1;
-  };
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__router__ = __webpack_require__(24);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+var getLinks = function getLinks(routesConfig) {
+  return routesConfig.map(function (route, index) {
+    return {
+      index: index,
+      name: route.name,
+      path: route.path
+    };
+  });
 };
 
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'DemoNavigation',
+  data: function data() {
+    return {
+      links: getLinks(__WEBPACK_IMPORTED_MODULE_0__router__["b" /* routes */])
+    };
+  }
+});
 
 /***/ }),
 /* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(18);
-var max = Math.max;
-var min = Math.min;
-module.exports = function (index, length) {
-  index = toInteger(index);
-  return index < 0 ? max(index + length, 0) : min(index, length);
-};
-
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports) {
-
-exports.f = Object.getOwnPropertySymbols;
-
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports) {
-
-exports.f = {}.propertyIsEnumerable;
-
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(62), __esModule: true };
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(63);
-__webpack_require__(73);
-module.exports = __webpack_require__(5).Array.from;
-
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $at = __webpack_require__(64)(true);
-
-// 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(65)(String, 'String', function (iterated) {
-  this._t = String(iterated); // target
-  this._i = 0;                // next index
-// 21.1.5.2.1 %StringIteratorPrototype%.next()
-}, function () {
-  var O = this._t;
-  var index = this._i;
-  var point;
-  if (index >= O.length) return { value: undefined, done: true };
-  point = $at(O, index);
-  this._i += point.length;
-  return { value: point, done: false };
-});
-
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var toInteger = __webpack_require__(18);
-var defined = __webpack_require__(17);
-// true  -> String#at
-// false -> String#codePointAt
-module.exports = function (TO_STRING) {
-  return function (that, pos) {
-    var s = String(defined(that));
-    var i = toInteger(pos);
-    var l = s.length;
-    var a, b;
-    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
-    a = s.charCodeAt(i);
-    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
-      ? TO_STRING ? s.charAt(i) : a
-      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
-  };
-};
-
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var LIBRARY = __webpack_require__(66);
-var $export = __webpack_require__(13);
-var redefine = __webpack_require__(67);
-var hide = __webpack_require__(6);
-var has = __webpack_require__(10);
-var Iterators = __webpack_require__(22);
-var $iterCreate = __webpack_require__(68);
-var setToStringTag = __webpack_require__(34);
-var getPrototypeOf = __webpack_require__(72);
-var ITERATOR = __webpack_require__(0)('iterator');
-var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
-var FF_ITERATOR = '@@iterator';
-var KEYS = 'keys';
-var VALUES = 'values';
-
-var returnThis = function () { return this; };
-
-module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
-  $iterCreate(Constructor, NAME, next);
-  var getMethod = function (kind) {
-    if (!BUGGY && kind in proto) return proto[kind];
-    switch (kind) {
-      case KEYS: return function keys() { return new Constructor(this, kind); };
-      case VALUES: return function values() { return new Constructor(this, kind); };
-    } return function entries() { return new Constructor(this, kind); };
-  };
-  var TAG = NAME + ' Iterator';
-  var DEF_VALUES = DEFAULT == VALUES;
-  var VALUES_BUG = false;
-  var proto = Base.prototype;
-  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
-  var $default = (!BUGGY && $native) || getMethod(DEFAULT);
-  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
-  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
-  var methods, key, IteratorPrototype;
-  // Fix native
-  if ($anyNative) {
-    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
-    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
-      // Set @@toStringTag to native iterators
-      setToStringTag(IteratorPrototype, TAG, true);
-      // fix for some old engines
-      if (!LIBRARY && !has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
-    }
-  }
-  // fix Array#{values, @@iterator}.name in V8 / FF
-  if (DEF_VALUES && $native && $native.name !== VALUES) {
-    VALUES_BUG = true;
-    $default = function values() { return $native.call(this); };
-  }
-  // Define iterator
-  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
-    hide(proto, ITERATOR, $default);
-  }
-  // Plug for library
-  Iterators[NAME] = $default;
-  Iterators[TAG] = returnThis;
-  if (DEFAULT) {
-    methods = {
-      values: DEF_VALUES ? $default : getMethod(VALUES),
-      keys: IS_SET ? $default : getMethod(KEYS),
-      entries: $entries
-    };
-    if (FORCED) for (key in methods) {
-      if (!(key in proto)) redefine(proto, key, methods[key]);
-    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
-  }
-  return methods;
-};
-
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-module.exports = true;
-
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(6);
-
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var create = __webpack_require__(69);
-var descriptor = __webpack_require__(16);
-var setToStringTag = __webpack_require__(34);
-var IteratorPrototype = {};
-
-// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(6)(IteratorPrototype, __webpack_require__(0)('iterator'), function () { return this; });
-
-module.exports = function (Constructor, NAME, next) {
-  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
-  setToStringTag(Constructor, NAME + ' Iterator');
-};
-
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(8);
-var dPs = __webpack_require__(70);
-var enumBugKeys = __webpack_require__(33);
-var IE_PROTO = __webpack_require__(19)('IE_PROTO');
-var Empty = function () { /* empty */ };
-var PROTOTYPE = 'prototype';
-
-// Create object with fake `null` prototype: use iframe Object with cleared prototype
-var createDict = function () {
-  // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(25)('iframe');
-  var i = enumBugKeys.length;
-  var lt = '<';
-  var gt = '>';
-  var iframeDocument;
-  iframe.style.display = 'none';
-  __webpack_require__(71).appendChild(iframe);
-  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
-  // createDict = iframe.contentWindow.Object;
-  // html.removeChild(iframe);
-  iframeDocument = iframe.contentWindow.document;
-  iframeDocument.open();
-  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
-  iframeDocument.close();
-  createDict = iframeDocument.F;
-  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
-  return createDict();
-};
-
-module.exports = Object.create || function create(O, Properties) {
-  var result;
-  if (O !== null) {
-    Empty[PROTOTYPE] = anObject(O);
-    result = new Empty();
-    Empty[PROTOTYPE] = null;
-    // add "__proto__" for Object.getPrototypeOf polyfill
-    result[IE_PROTO] = O;
-  } else result = createDict();
-  return Properties === undefined ? result : dPs(result, Properties);
-};
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP = __webpack_require__(7);
-var anObject = __webpack_require__(8);
-var getKeys = __webpack_require__(26);
-
-module.exports = __webpack_require__(9) ? Object.defineProperties : function defineProperties(O, Properties) {
-  anObject(O);
-  var keys = getKeys(Properties);
-  var length = keys.length;
-  var i = 0;
-  var P;
-  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
-  return O;
-};
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var document = __webpack_require__(4).document;
-module.exports = document && document.documentElement;
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has = __webpack_require__(10);
-var toObject = __webpack_require__(20);
-var IE_PROTO = __webpack_require__(19)('IE_PROTO');
-var ObjectProto = Object.prototype;
-
-module.exports = Object.getPrototypeOf || function (O) {
-  O = toObject(O);
-  if (has(O, IE_PROTO)) return O[IE_PROTO];
-  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
-    return O.constructor.prototype;
-  } return O instanceof Object ? ObjectProto : null;
-};
-
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var ctx = __webpack_require__(24);
-var $export = __webpack_require__(13);
-var toObject = __webpack_require__(20);
-var call = __webpack_require__(74);
-var isArrayIter = __webpack_require__(75);
-var toLength = __webpack_require__(30);
-var createProperty = __webpack_require__(76);
-var getIterFn = __webpack_require__(77);
-
-$export($export.S + $export.F * !__webpack_require__(79)(function (iter) { Array.from(iter); }), 'Array', {
-  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
-  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
-    var O = toObject(arrayLike);
-    var C = typeof this == 'function' ? this : Array;
-    var aLen = arguments.length;
-    var mapfn = aLen > 1 ? arguments[1] : undefined;
-    var mapping = mapfn !== undefined;
-    var index = 0;
-    var iterFn = getIterFn(O);
-    var length, result, step, iterator;
-    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
-    // if object isn't iterable or it's array with default iterator - use simple case
-    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
-      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
-        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
-      }
-    } else {
-      length = toLength(O.length);
-      for (result = new C(length); length > index; index++) {
-        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
-      }
-    }
-    result.length = index;
-    return result;
-  }
-});
-
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// call something on iterator step with safe closing on error
-var anObject = __webpack_require__(8);
-module.exports = function (iterator, fn, value, entries) {
-  try {
-    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
-  // 7.4.6 IteratorClose(iterator, completion)
-  } catch (e) {
-    var ret = iterator['return'];
-    if (ret !== undefined) anObject(ret.call(iterator));
-    throw e;
-  }
-};
-
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// check on default Array iterator
-var Iterators = __webpack_require__(22);
-var ITERATOR = __webpack_require__(0)('iterator');
-var ArrayProto = Array.prototype;
-
-module.exports = function (it) {
-  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
-};
-
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $defineProperty = __webpack_require__(7);
-var createDesc = __webpack_require__(16);
-
-module.exports = function (object, index, value) {
-  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
-  else object[index] = value;
-};
-
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var classof = __webpack_require__(78);
-var ITERATOR = __webpack_require__(0)('iterator');
-var Iterators = __webpack_require__(22);
-module.exports = __webpack_require__(5).getIteratorMethod = function (it) {
-  if (it != undefined) return it[ITERATOR]
-    || it['@@iterator']
-    || Iterators[classof(it)];
-};
-
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(29);
-var TAG = __webpack_require__(0)('toStringTag');
-// ES3 wrong here
-var ARG = cof(function () { return arguments; }()) == 'Arguments';
-
-// fallback for IE11 Script Access Denied error
-var tryGet = function (it, key) {
-  try {
-    return it[key];
-  } catch (e) { /* empty */ }
-};
-
-module.exports = function (it) {
-  var O, T, B;
-  return it === undefined ? 'Undefined' : it === null ? 'Null'
-    // @@toStringTag case
-    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
-    // builtinTag case
-    : ARG ? cof(O)
-    // ES3 arguments fallback
-    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
-};
-
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var ITERATOR = __webpack_require__(0)('iterator');
-var SAFE_CLOSING = false;
-
-try {
-  var riter = [7][ITERATOR]();
-  riter['return'] = function () { SAFE_CLOSING = true; };
-  // eslint-disable-next-line no-throw-literal
-  Array.from(riter, function () { throw 2; });
-} catch (e) { /* empty */ }
-
-module.exports = function (exec, skipClosing) {
-  if (!skipClosing && !SAFE_CLOSING) return false;
-  var safe = false;
-  try {
-    var arr = [7];
-    var iter = arr[ITERATOR]();
-    iter.next = function () { return { done: safe = true }; };
-    arr[ITERATOR] = function () { return iter; };
-    exec(arr);
-  } catch (e) { /* empty */ }
-  return safe;
-};
-
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "background" }, [
-    _c("div", { staticClass: "background__pane pane--iridescent" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "background__beams" },
-      _vm._l(_vm.beams, function(beam) {
-        return _c("div", {
-          key: beam.type + beam.index,
-          class: _vm.getClasses(beam),
-          style: _vm.getStyle(beam)
-        })
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-2e27efaa", module.exports)
-  }
-}
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(82)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(84)
-/* template */
-var __vue_template__ = __webpack_require__(85)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/backgrounds/IridescentBackdropDisks.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-aa080b08", Component.options)
-  } else {
-    hotAPI.reload("data-v-aa080b08", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(83);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("223a54d1", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa080b08\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropDisks.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa080b08\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropDisks.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__shapes {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .shape {\n    background: radial-gradient(white, white, white, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));\n    border-radius: 10%;\n    position: absolute;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .shape--glimmer-one {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-one, shimmer;\n              animation-name: glimmer-one, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .shape--glimmer-two {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-two, shimmer;\n              animation-name: glimmer-two, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@-webkit-keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@-webkit-keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n@keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 84 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var CLASS_OPTIONS = {
-  a: 'one',
-  b: 'two'
-};
-var SHAPE_INDEXES = [1, 2, 3];
-var SHAPE_TYPES = [1, 2];
-var MODIFIER = { delay: 100 };
-var RANGE = {
-  delay: {
-    iridescent: [1, 10],
-    shimmer: [3, 12]
-  },
-  dimensions: {
-    height: [20, 40],
-    width: [20, 40]
-  },
-  position: {
-    vertical: [10, 30]
-  },
-  duration: {
-    iridescent: [10, 15],
-    shimmer: [2, 5]
-  },
-  radii: [1, 20]
-};
-
-var randomNumber = function randomNumber(min, max) {
-  return Math.floor(Math.random() * max) + min;
-};
-var randomNumberInRange = function randomNumberInRange(range) {
-  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
-};
-var lastIndex = function lastIndex(items) {
-  return items.length - 1;
-};
-var createShape = function createShape(index, type) {
-  return {
-    delay: {
-      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
-      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
-    },
-    direction: index === lastIndex(SHAPE_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
-    duration: {
-      iridescent: randomNumberInRange(RANGE.duration.iridescent),
-      shimmer: randomNumberInRange(RANGE.duration.shimmer)
-    },
-    height: randomNumberInRange(RANGE.dimensions.height),
-    index: index,
-    radii: {
-      bl: randomNumberInRange(RANGE.radii),
-      br: randomNumberInRange(RANGE.radii),
-      tl: randomNumberInRange(RANGE.radii),
-      tr: randomNumberInRange(RANGE.radii)
-    },
-    type: type,
-    width: randomNumberInRange(RANGE.dimensions.width)
-  };
-};
-var shapeFactory = function shapeFactory(type) {
-  return SHAPE_INDEXES.map(function (index) {
-    return createShape(type, index);
-  });
-};
-var flatten = function flatten(list) {
-  return list.reduce(function (a, b) {
-    return a.concat(b);
-  });
-};
-var position = function position(list) {
-  return list.map(function (item, index) {
-    var section = 100 / (list.length + 1);
-    var left = section * (index + 1);
-    var verticalVariance = randomNumberInRange(RANGE.position.vertical);
-    var top = index % 2 === 0 ? 50 - verticalVariance : 50 + verticalVariance;
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left, top: top });
-  });
-};
-var getShapes = function getShapes() {
-  return position(flatten(SHAPE_TYPES.map(shapeFactory)));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'IridescentBackdropDisks',
-  data: function data() {
-    var shapes = getShapes();
-    return {
-      shapes: shapes
-    };
-  },
-
-  methods: {
-    getStyle: function getStyle(shape) {
-      var rules = ['animation-duration: ' + shape.duration.iridescent + 's, ' + shape.duration.shimmer + 's;', 'animation-delay: ' + shape.delay.iridescent + 'ms, ' + shape.delay.shimmer + 'ms;', 'border-radius: ' + shape.radii.bl + '%, ' + shape.radii.br + '%, ' + shape.radii.tl + '%, ' + shape.radii.tr + '%;', 'height: ' + shape.height + 'vmax;', 'left: ' + shape.left + 'vw;', 'top: ' + shape.top + 'vh;', 'width: ' + shape.width + 'vmax;'];
-      return rules.join('');
-    },
-    getClasses: function getClasses(shape) {
-      // return `background__shape shape shape--type-${shape.type}`;
-      return 'background__shape shape shape--type-' + shape.type + ' shape--glimmer-' + shape.direction;
-    }
-  }
-});
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "background" }, [
-    _c("div", { staticClass: "background__pane pane--iridescent" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "background__topography" },
-      _vm._l(_vm.shapes, function(shape) {
-        return _c("div", {
-          key: shape.type + shape.index,
-          class: _vm.getClasses(shape),
-          style: _vm.getStyle(shape)
-        })
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-aa080b08", module.exports)
-  }
-}
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(87)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(89)
-/* template */
-var __vue_template__ = __webpack_require__(90)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/backgrounds/IridescentBackdropGradients.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-489d2dc9", Component.options)
-  } else {
-    hotAPI.reload("data-v-489d2dc9", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(88);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("db587e08", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-489d2dc9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropGradients.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-489d2dc9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropGradients.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9c8ce);\n}\n.background .pane--beams {\n    -webkit-animation: shimmer 25s linear;\n            animation: shimmer 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.65)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.65)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(25%, 0, 0);\n            transform: translate3d(25%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-25%, 0, 0);\n            transform: translate3d(-25%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes shimmer {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(25%, 0, 0);\n            transform: translate3d(25%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-25%, 0, 0);\n            transform: translate3d(-25%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes shimmer2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(25%, 0);\n            transform: translate(25%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-25%, 0);\n            transform: translate(-25%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes shimmer2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(25%, 0);\n            transform: translate(25%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-25%, 0);\n            transform: translate(-25%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 89 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'IridescentBackdropGradients.vue'
-});
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "background" }, [
-      _c("div", { staticClass: "background__pane pane--iridescent" }),
-      _vm._v(" "),
-      _c("div", { staticClass: "background__pane pane--beams" })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-489d2dc9", module.exports)
-  }
-}
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(92)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(94)
-/* template */
-var __vue_template__ = __webpack_require__(95)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/backgrounds/IridescentBackdropPlanes.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-21674201", Component.options)
-  } else {
-    hotAPI.reload("data-v-21674201", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(93);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("75ee8d84", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-21674201\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropPlanes.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-21674201\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropPlanes.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__shapes {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .shape {\n    background: radial-gradient(white, white, white, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));\n    border-radius: 10%;\n    position: absolute;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .shape--glimmer-one {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-one, shimmer;\n              animation-name: glimmer-one, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .shape--glimmer-two {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-two, shimmer;\n              animation-name: glimmer-two, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@-webkit-keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@-webkit-keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n@keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 94 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var CLASS_OPTIONS = {
-  a: 'one',
-  b: 'two'
-};
-var SHAPE_INDEXES = [1, 2, 3];
-var SHAPE_TYPES = [1, 2];
-var MODIFIER = { delay: 100 };
-var RANGE = {
-  delay: {
-    iridescent: [1, 10],
-    shimmer: [3, 12]
-  },
-  dimensions: {
-    height: [20, 40],
-    width: [20, 40]
-  },
-  position: {
-    vertical: [10, 30]
-  },
-  duration: {
-    iridescent: [10, 15],
-    shimmer: [2, 5]
-  },
-  radii: [1, 20]
-};
-
-var randomNumber = function randomNumber(min, max) {
-  return Math.floor(Math.random() * max) + min;
-};
-var randomNumberInRange = function randomNumberInRange(range) {
-  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
-};
-var lastIndex = function lastIndex(items) {
-  return items.length - 1;
-};
-var createShape = function createShape(index, type) {
-  return {
-    delay: {
-      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
-      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
-    },
-    direction: index === lastIndex(SHAPE_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
-    duration: {
-      iridescent: randomNumberInRange(RANGE.duration.iridescent),
-      shimmer: randomNumberInRange(RANGE.duration.shimmer)
-    },
-    height: randomNumberInRange(RANGE.dimensions.height),
-    index: index,
-    radii: {
-      bl: randomNumberInRange(RANGE.radii),
-      br: randomNumberInRange(RANGE.radii),
-      tl: randomNumberInRange(RANGE.radii),
-      tr: randomNumberInRange(RANGE.radii)
-    },
-    type: type,
-    width: randomNumberInRange(RANGE.dimensions.width)
-  };
-};
-var shapeFactory = function shapeFactory(type) {
-  return SHAPE_INDEXES.map(function (index) {
-    return createShape(type, index);
-  });
-};
-var flatten = function flatten(list) {
-  return list.reduce(function (a, b) {
-    return a.concat(b);
-  });
-};
-var position = function position(list) {
-  return list.map(function (item, index) {
-    var section = 100 / (list.length + 1);
-    var left = section * (index + 1);
-    var verticalVariance = randomNumberInRange(RANGE.position.vertical);
-    var top = index % 2 === 0 ? 50 - verticalVariance : 50 + verticalVariance;
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left, top: top });
-  });
-};
-var getShapes = function getShapes() {
-  return position(flatten(SHAPE_TYPES.map(shapeFactory)));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'IridescentBackdropPlanes',
-  data: function data() {
-    var shapes = getShapes();
-    return {
-      shapes: shapes
-    };
-  },
-
-  methods: {
-    getStyle: function getStyle(shape) {
-      var rules = ['animation-duration: ' + shape.duration.iridescent + 's, ' + shape.duration.shimmer + 's;', 'animation-delay: ' + shape.delay.iridescent + 'ms, ' + shape.delay.shimmer + 'ms;', 'border-radius: ' + shape.radii.bl + '%, ' + shape.radii.br + '%, ' + shape.radii.tl + '%, ' + shape.radii.tr + '%;', 'height: ' + shape.height + 'vmax;', 'left: ' + shape.left + 'vw;', 'top: ' + shape.top + 'vh;', 'width: ' + shape.width + 'vmax;'];
-      return rules.join('');
-    },
-    getClasses: function getClasses(shape) {
-      // return `background__shape shape shape--type-${shape.type}`;
-      return 'background__shape shape shape--type-' + shape.type + ' shape--glimmer-' + shape.direction;
-    }
-  }
-});
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "background" }, [
-    _c("div", { staticClass: "background__pane pane--iridescent" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "background__topography" },
-      _vm._l(_vm.shapes, function(shape) {
-        return _c("div", {
-          key: shape.type + shape.index,
-          class: _vm.getClasses(shape),
-          style: _vm.getStyle(shape)
-        })
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-21674201", module.exports)
-  }
-}
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "main" },
-    [
-      _c("router-view", { staticClass: "main__background" }),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "main__content demo" },
-        [_c("DemoControls", { staticClass: "demo__controls" })],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7f989cbe", module.exports)
-  }
-}
-
-/***/ }),
-/* 97 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return routes; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes__);
-
-
-
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
-
-var routes = [{
-  path: '/beams',
-  alias: '/',
-  name: 'Beams',
-  component: __WEBPACK_IMPORTED_MODULE_2__components_backgrounds_IridescentBackdropBeams___default.a
-}, {
-  path: '/disks',
-  name: 'Disks',
-  component: __WEBPACK_IMPORTED_MODULE_3__components_backgrounds_IridescentBackdropDisks___default.a
-}, {
-  path: '/gradients',
-  name: 'Gradients',
-  component: __WEBPACK_IMPORTED_MODULE_4__components_backgrounds_IridescentBackdropGradients___default.a
-}, {
-  path: '/planes',
-  name: 'Planes',
-  component: __WEBPACK_IMPORTED_MODULE_5__components_backgrounds_IridescentBackdropPlanes___default.a
-}];
-
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-  routes: routes
-}));
-
-/***/ }),
-/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -16796,83 +15720,23 @@ if (inBrowser && window.Vue) {
 
 
 /***/ }),
-/* 99 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 100 */,
-/* 101 */,
-/* 102 */,
-/* 103 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(104)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(106)
-/* template */
-var __vue_template__ = __webpack_require__(107)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-7b3fab10"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/controls/DemoNavigation.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7b3fab10", Component.options)
-  } else {
-    hotAPI.reload("data-v-7b3fab10", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 104 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(105);
+var content = __webpack_require__(60);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("c8e9c9ea", content, false, {});
+var update = __webpack_require__(0)("73984c5a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b3fab10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoNavigation.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-7b3fab10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoNavigation.vue");
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e27efaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2e27efaa\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -16882,26 +15746,32 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(1)(false);
+exports = module.exports = __webpack_require__(3)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .beam {\n    height: 100vh;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n    position: absolute;\n    top: 0;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .beam--glimmer-left {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-left, sheen;\n              animation-name: glimmer-left, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .beam--glimmer-right {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-right, sheen;\n              animation-name: glimmer-right, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@-webkit-keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@-webkit-keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@-webkit-keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 106 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__router__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
+
+
+//
 //
 //
 //
@@ -16915,29 +15785,1229 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var BEAM_INDEXES = [1, 2, 3];
+var BEAM_TYPES = [1, 2];
+var CLASS_OPTIONS = {
+  a: 'left',
+  b: 'right'
+};
+var MODIFIER = { delay: 100 };
+var RANGE = {
+  delay: {
+    iridescent: [1, 10],
+    shimmer: [3, 12]
+  },
+  duration: {
+    iridescent: [8, 12],
+    shimmer: [2, 5]
+  },
+  width: [5, 15]
+};
 
-
-var getLinks = function getLinks(routesConfig) {
-  return routesConfig.map(function (route, index) {
-    return {
-      index: index,
-      name: route.name,
-      path: route.path
-    };
+var randomNumber = function randomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+};
+var randomNumberInRange = function randomNumberInRange(range) {
+  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
+};
+var lastIndex = function lastIndex(items) {
+  return items.length - 1;
+};
+var createBeam = function createBeam(index, type) {
+  return {
+    delay: {
+      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
+      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
+    },
+    direction: index === lastIndex(BEAM_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
+    duration: {
+      iridescent: randomNumberInRange(RANGE.duration.iridescent),
+      shimmer: randomNumberInRange(RANGE.duration.shimmer)
+    },
+    index: index,
+    type: type,
+    width: randomNumberInRange(RANGE.width)
+  };
+};
+var beamFactory = function beamFactory(type) {
+  return BEAM_INDEXES.map(function (index) {
+    return createBeam(type, index);
   });
+};
+var flatten = function flatten(list) {
+  return list.reduce(function (a, b) {
+    return a.concat(b);
+  });
+};
+var position = function position(list) {
+  return list.map(function (item, index) {
+    var section = 100 / (list.length + 1);
+    var left = section * (index + 1);
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left });
+  });
+};
+var getBeams = function getBeams() {
+  return position(flatten(BEAM_TYPES.map(beamFactory)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'DemoNavigation',
+  name: 'IridescentBackdropBeams',
   data: function data() {
+    var beams = getBeams();
     return {
-      links: getLinks(__WEBPACK_IMPORTED_MODULE_0__router__["b" /* routes */])
+      beams: beams
     };
+  },
+
+  methods: {
+    getStyle: function getStyle(beam) {
+      var rules = ['animation-duration: ' + beam.duration.iridescent + 's, ' + beam.duration.shimmer + 's;', 'animation-delay: ' + beam.delay.iridescent + 'ms, ' + beam.delay.shimmer + 'ms;', 'left: ' + beam.left + 'vw;', 'width: ' + beam.width + 'vw;'];
+      return rules.join('');
+    },
+    getClasses: function getClasses(beam) {
+      return 'background__beam beam beam--type-' + beam.type + ' beam--glimmer-' + beam.direction;
+    }
   }
 });
 
 /***/ }),
-/* 107 */
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(63), __esModule: true };
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(64);
+module.exports = __webpack_require__(5).Object.assign;
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(13);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(68) });
+
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__(9) && !__webpack_require__(15)(function () {
+  return Object.defineProperty(__webpack_require__(27)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(14);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 19.1.2.1 Object.assign(target, source, ...)
+var getKeys = __webpack_require__(28);
+var gOPS = __webpack_require__(72);
+var pIE = __webpack_require__(73);
+var toObject = __webpack_require__(20);
+var IObject = __webpack_require__(30);
+var $assign = Object.assign;
+
+// should work with symbols and should have deterministic property order (V8 bug)
+module.exports = !$assign || __webpack_require__(15)(function () {
+  var A = {};
+  var B = {};
+  // eslint-disable-next-line no-undef
+  var S = Symbol();
+  var K = 'abcdefghijklmnopqrst';
+  A[S] = 7;
+  K.split('').forEach(function (k) { B[k] = k; });
+  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
+}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
+  var T = toObject(target);
+  var aLen = arguments.length;
+  var index = 1;
+  var getSymbols = gOPS.f;
+  var isEnum = pIE.f;
+  while (aLen > index) {
+    var S = IObject(arguments[index++]);
+    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
+    var length = keys.length;
+    var j = 0;
+    var key;
+    while (length > j) if (isEnum.call(S, key = keys[j++])) T[key] = S[key];
+  } return T;
+} : $assign;
+
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var has = __webpack_require__(10);
+var toIObject = __webpack_require__(29);
+var arrayIndexOf = __webpack_require__(70)(false);
+var IE_PROTO = __webpack_require__(19)('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__(29);
+var toLength = __webpack_require__(32);
+var toAbsoluteIndex = __webpack_require__(71);
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(18);
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports) {
+
+exports.f = Object.getOwnPropertySymbols;
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = { "default": __webpack_require__(75), __esModule: true };
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(76);
+__webpack_require__(86);
+module.exports = __webpack_require__(5).Array.from;
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $at = __webpack_require__(77)(true);
+
+// 21.1.3.27 String.prototype[@@iterator]()
+__webpack_require__(78)(String, 'String', function (iterated) {
+  this._t = String(iterated); // target
+  this._i = 0;                // next index
+// 21.1.5.2.1 %StringIteratorPrototype%.next()
+}, function () {
+  var O = this._t;
+  var index = this._i;
+  var point;
+  if (index >= O.length) return { value: undefined, done: true };
+  point = $at(O, index);
+  this._i += point.length;
+  return { value: point, done: false };
+});
+
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__(18);
+var defined = __webpack_require__(17);
+// true  -> String#at
+// false -> String#codePointAt
+module.exports = function (TO_STRING) {
+  return function (that, pos) {
+    var s = String(defined(that));
+    var i = toInteger(pos);
+    var l = s.length;
+    var a, b;
+    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
+    a = s.charCodeAt(i);
+    return a < 0xd800 || a > 0xdbff || i + 1 === l || (b = s.charCodeAt(i + 1)) < 0xdc00 || b > 0xdfff
+      ? TO_STRING ? s.charAt(i) : a
+      : TO_STRING ? s.slice(i, i + 2) : (a - 0xd800 << 10) + (b - 0xdc00) + 0x10000;
+  };
+};
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var LIBRARY = __webpack_require__(79);
+var $export = __webpack_require__(13);
+var redefine = __webpack_require__(80);
+var hide = __webpack_require__(6);
+var has = __webpack_require__(10);
+var Iterators = __webpack_require__(22);
+var $iterCreate = __webpack_require__(81);
+var setToStringTag = __webpack_require__(36);
+var getPrototypeOf = __webpack_require__(85);
+var ITERATOR = __webpack_require__(2)('iterator');
+var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
+var FF_ITERATOR = '@@iterator';
+var KEYS = 'keys';
+var VALUES = 'values';
+
+var returnThis = function () { return this; };
+
+module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
+  $iterCreate(Constructor, NAME, next);
+  var getMethod = function (kind) {
+    if (!BUGGY && kind in proto) return proto[kind];
+    switch (kind) {
+      case KEYS: return function keys() { return new Constructor(this, kind); };
+      case VALUES: return function values() { return new Constructor(this, kind); };
+    } return function entries() { return new Constructor(this, kind); };
+  };
+  var TAG = NAME + ' Iterator';
+  var DEF_VALUES = DEFAULT == VALUES;
+  var VALUES_BUG = false;
+  var proto = Base.prototype;
+  var $native = proto[ITERATOR] || proto[FF_ITERATOR] || DEFAULT && proto[DEFAULT];
+  var $default = (!BUGGY && $native) || getMethod(DEFAULT);
+  var $entries = DEFAULT ? !DEF_VALUES ? $default : getMethod('entries') : undefined;
+  var $anyNative = NAME == 'Array' ? proto.entries || $native : $native;
+  var methods, key, IteratorPrototype;
+  // Fix native
+  if ($anyNative) {
+    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
+    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
+      // Set @@toStringTag to native iterators
+      setToStringTag(IteratorPrototype, TAG, true);
+      // fix for some old engines
+      if (!LIBRARY && !has(IteratorPrototype, ITERATOR)) hide(IteratorPrototype, ITERATOR, returnThis);
+    }
+  }
+  // fix Array#{values, @@iterator}.name in V8 / FF
+  if (DEF_VALUES && $native && $native.name !== VALUES) {
+    VALUES_BUG = true;
+    $default = function values() { return $native.call(this); };
+  }
+  // Define iterator
+  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+    hide(proto, ITERATOR, $default);
+  }
+  // Plug for library
+  Iterators[NAME] = $default;
+  Iterators[TAG] = returnThis;
+  if (DEFAULT) {
+    methods = {
+      values: DEF_VALUES ? $default : getMethod(VALUES),
+      keys: IS_SET ? $default : getMethod(KEYS),
+      entries: $entries
+    };
+    if (FORCED) for (key in methods) {
+      if (!(key in proto)) redefine(proto, key, methods[key]);
+    } else $export($export.P + $export.F * (BUGGY || VALUES_BUG), NAME, methods);
+  }
+  return methods;
+};
+
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports) {
+
+module.exports = true;
+
+
+/***/ }),
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(6);
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var create = __webpack_require__(82);
+var descriptor = __webpack_require__(16);
+var setToStringTag = __webpack_require__(36);
+var IteratorPrototype = {};
+
+// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+__webpack_require__(6)(IteratorPrototype, __webpack_require__(2)('iterator'), function () { return this; });
+
+module.exports = function (Constructor, NAME, next) {
+  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+  setToStringTag(Constructor, NAME + ' Iterator');
+};
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __webpack_require__(8);
+var dPs = __webpack_require__(83);
+var enumBugKeys = __webpack_require__(35);
+var IE_PROTO = __webpack_require__(19)('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __webpack_require__(27)('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __webpack_require__(84).appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__(7);
+var anObject = __webpack_require__(8);
+var getKeys = __webpack_require__(28);
+
+module.exports = __webpack_require__(9) ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var document = __webpack_require__(4).document;
+module.exports = document && document.documentElement;
+
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
+var has = __webpack_require__(10);
+var toObject = __webpack_require__(20);
+var IE_PROTO = __webpack_require__(19)('IE_PROTO');
+var ObjectProto = Object.prototype;
+
+module.exports = Object.getPrototypeOf || function (O) {
+  O = toObject(O);
+  if (has(O, IE_PROTO)) return O[IE_PROTO];
+  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+    return O.constructor.prototype;
+  } return O instanceof Object ? ObjectProto : null;
+};
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var ctx = __webpack_require__(26);
+var $export = __webpack_require__(13);
+var toObject = __webpack_require__(20);
+var call = __webpack_require__(87);
+var isArrayIter = __webpack_require__(88);
+var toLength = __webpack_require__(32);
+var createProperty = __webpack_require__(89);
+var getIterFn = __webpack_require__(90);
+
+$export($export.S + $export.F * !__webpack_require__(92)(function (iter) { Array.from(iter); }), 'Array', {
+  // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
+  from: function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+    var O = toObject(arrayLike);
+    var C = typeof this == 'function' ? this : Array;
+    var aLen = arguments.length;
+    var mapfn = aLen > 1 ? arguments[1] : undefined;
+    var mapping = mapfn !== undefined;
+    var index = 0;
+    var iterFn = getIterFn(O);
+    var length, result, step, iterator;
+    if (mapping) mapfn = ctx(mapfn, aLen > 2 ? arguments[2] : undefined, 2);
+    // if object isn't iterable or it's array with default iterator - use simple case
+    if (iterFn != undefined && !(C == Array && isArrayIter(iterFn))) {
+      for (iterator = iterFn.call(O), result = new C(); !(step = iterator.next()).done; index++) {
+        createProperty(result, index, mapping ? call(iterator, mapfn, [step.value, index], true) : step.value);
+      }
+    } else {
+      length = toLength(O.length);
+      for (result = new C(length); length > index; index++) {
+        createProperty(result, index, mapping ? mapfn(O[index], index) : O[index]);
+      }
+    }
+    result.length = index;
+    return result;
+  }
+});
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// call something on iterator step with safe closing on error
+var anObject = __webpack_require__(8);
+module.exports = function (iterator, fn, value, entries) {
+  try {
+    return entries ? fn(anObject(value)[0], value[1]) : fn(value);
+  // 7.4.6 IteratorClose(iterator, completion)
+  } catch (e) {
+    var ret = iterator['return'];
+    if (ret !== undefined) anObject(ret.call(iterator));
+    throw e;
+  }
+};
+
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// check on default Array iterator
+var Iterators = __webpack_require__(22);
+var ITERATOR = __webpack_require__(2)('iterator');
+var ArrayProto = Array.prototype;
+
+module.exports = function (it) {
+  return it !== undefined && (Iterators.Array === it || ArrayProto[ITERATOR] === it);
+};
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $defineProperty = __webpack_require__(7);
+var createDesc = __webpack_require__(16);
+
+module.exports = function (object, index, value) {
+  if (index in object) $defineProperty.f(object, index, createDesc(0, value));
+  else object[index] = value;
+};
+
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof = __webpack_require__(91);
+var ITERATOR = __webpack_require__(2)('iterator');
+var Iterators = __webpack_require__(22);
+module.exports = __webpack_require__(5).getIteratorMethod = function (it) {
+  if (it != undefined) return it[ITERATOR]
+    || it['@@iterator']
+    || Iterators[classof(it)];
+};
+
+
+/***/ }),
+/* 91 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// getting tag from 19.1.3.6 Object.prototype.toString()
+var cof = __webpack_require__(31);
+var TAG = __webpack_require__(2)('toStringTag');
+// ES3 wrong here
+var ARG = cof(function () { return arguments; }()) == 'Arguments';
+
+// fallback for IE11 Script Access Denied error
+var tryGet = function (it, key) {
+  try {
+    return it[key];
+  } catch (e) { /* empty */ }
+};
+
+module.exports = function (it) {
+  var O, T, B;
+  return it === undefined ? 'Undefined' : it === null ? 'Null'
+    // @@toStringTag case
+    : typeof (T = tryGet(O = Object(it), TAG)) == 'string' ? T
+    // builtinTag case
+    : ARG ? cof(O)
+    // ES3 arguments fallback
+    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+};
+
+
+/***/ }),
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var ITERATOR = __webpack_require__(2)('iterator');
+var SAFE_CLOSING = false;
+
+try {
+  var riter = [7][ITERATOR]();
+  riter['return'] = function () { SAFE_CLOSING = true; };
+  // eslint-disable-next-line no-throw-literal
+  Array.from(riter, function () { throw 2; });
+} catch (e) { /* empty */ }
+
+module.exports = function (exec, skipClosing) {
+  if (!skipClosing && !SAFE_CLOSING) return false;
+  var safe = false;
+  try {
+    var arr = [7];
+    var iter = arr[ITERATOR]();
+    iter.next = function () { return { done: safe = true }; };
+    arr[ITERATOR] = function () { return iter; };
+    exec(arr);
+  } catch (e) { /* empty */ }
+  return safe;
+};
+
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "background" }, [
+    _c("div", { staticClass: "background__pane pane--iridescent" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "background__beams" },
+      _vm._l(_vm.beams, function(beam) {
+        return _c("div", {
+          key: beam.type + beam.index,
+          class: _vm.getClasses(beam),
+          style: _vm.getStyle(beam)
+        })
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2e27efaa", module.exports)
+  }
+}
+
+/***/ }),
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(95);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(0)("223a54d1", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa080b08\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropDisks.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-aa080b08\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropDisks.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__shapes {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .shape {\n    background: radial-gradient(white, white, white, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));\n    border-radius: 10%;\n    position: absolute;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .shape--glimmer-one {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-one, shimmer;\n              animation-name: glimmer-one, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .shape--glimmer-two {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-two, shimmer;\n              animation-name: glimmer-two, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@-webkit-keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@-webkit-keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n@keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var CLASS_OPTIONS = {
+  a: 'one',
+  b: 'two'
+};
+var SHAPE_INDEXES = [1, 2, 3];
+var SHAPE_TYPES = [1, 2];
+var MODIFIER = { delay: 100 };
+var RANGE = {
+  delay: {
+    iridescent: [1, 10],
+    shimmer: [3, 12]
+  },
+  dimensions: {
+    height: [20, 40],
+    width: [20, 40]
+  },
+  position: {
+    vertical: [10, 30]
+  },
+  duration: {
+    iridescent: [10, 15],
+    shimmer: [2, 5]
+  },
+  radii: [1, 20]
+};
+
+var randomNumber = function randomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+};
+var randomNumberInRange = function randomNumberInRange(range) {
+  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
+};
+var lastIndex = function lastIndex(items) {
+  return items.length - 1;
+};
+var createShape = function createShape(index, type) {
+  return {
+    delay: {
+      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
+      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
+    },
+    direction: index === lastIndex(SHAPE_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
+    duration: {
+      iridescent: randomNumberInRange(RANGE.duration.iridescent),
+      shimmer: randomNumberInRange(RANGE.duration.shimmer)
+    },
+    height: randomNumberInRange(RANGE.dimensions.height),
+    index: index,
+    radii: {
+      bl: randomNumberInRange(RANGE.radii),
+      br: randomNumberInRange(RANGE.radii),
+      tl: randomNumberInRange(RANGE.radii),
+      tr: randomNumberInRange(RANGE.radii)
+    },
+    type: type,
+    width: randomNumberInRange(RANGE.dimensions.width)
+  };
+};
+var shapeFactory = function shapeFactory(type) {
+  return SHAPE_INDEXES.map(function (index) {
+    return createShape(type, index);
+  });
+};
+var flatten = function flatten(list) {
+  return list.reduce(function (a, b) {
+    return a.concat(b);
+  });
+};
+var position = function position(list) {
+  return list.map(function (item, index) {
+    var section = 100 / (list.length + 1);
+    var left = section * (index + 1);
+    var verticalVariance = randomNumberInRange(RANGE.position.vertical);
+    var top = index % 2 === 0 ? 50 - verticalVariance : 50 + verticalVariance;
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left, top: top });
+  });
+};
+var getShapes = function getShapes() {
+  return position(flatten(SHAPE_TYPES.map(shapeFactory)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'IridescentBackdropDisks',
+  data: function data() {
+    var shapes = getShapes();
+    return {
+      shapes: shapes
+    };
+  },
+
+  methods: {
+    getStyle: function getStyle(shape) {
+      var rules = ['animation-duration: ' + shape.duration.iridescent + 's, ' + shape.duration.shimmer + 's;', 'animation-delay: ' + shape.delay.iridescent + 'ms, ' + shape.delay.shimmer + 'ms;', 'border-radius: ' + shape.radii.bl + '%, ' + shape.radii.br + '%, ' + shape.radii.tl + '%, ' + shape.radii.tr + '%;', 'height: ' + shape.height + 'vmax;', 'left: ' + shape.left + 'vw;', 'top: ' + shape.top + 'vh;', 'width: ' + shape.width + 'vmax;'];
+      return rules.join('');
+    },
+    getClasses: function getClasses(shape) {
+      // return `background__shape shape shape--type-${shape.type}`;
+      return 'background__shape shape shape--type-' + shape.type + ' shape--glimmer-' + shape.direction;
+    }
+  }
+});
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "background" }, [
+    _c("div", { staticClass: "background__pane pane--iridescent" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "background__topography" },
+      _vm._l(_vm.shapes, function(shape) {
+        return _c("div", {
+          key: shape.type + shape.index,
+          class: _vm.getClasses(shape),
+          style: _vm.getStyle(shape)
+        })
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-aa080b08", module.exports)
+  }
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(99);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(0)("db587e08", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-489d2dc9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropGradients.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-489d2dc9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropGradients.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9c8ce);\n}\n.background .pane--beams {\n    -webkit-animation: shimmer 25s linear;\n            animation: shimmer 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.65)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.65)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.85)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0));\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(25%, 0, 0);\n            transform: translate3d(25%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-25%, 0, 0);\n            transform: translate3d(-25%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes shimmer {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(25%, 0, 0);\n            transform: translate3d(25%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-25%, 0, 0);\n            transform: translate3d(-25%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes shimmer2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(25%, 0);\n            transform: translate(25%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-25%, 0);\n            transform: translate(-25%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes shimmer2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(25%, 0);\n            transform: translate(25%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-25%, 0);\n            transform: translate(-25%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'IridescentBackdropGradients.vue'
+});
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "background" }, [
+      _c("div", { staticClass: "background__pane pane--iridescent" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "background__pane pane--beams" })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-489d2dc9", module.exports)
+  }
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(103);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(0)("75ee8d84", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-21674201\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropPlanes.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-21674201\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropPlanes.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), color-stop(#f9d1c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9d1c8, #f9c8ce);\n}\n.background__shapes {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .shape {\n    background: radial-gradient(white, white, white, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));\n    border-radius: 10%;\n    position: absolute;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .shape--glimmer-one {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-one, shimmer;\n              animation-name: glimmer-one, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .shape--glimmer-two {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-two, shimmer;\n              animation-name: glimmer-two, shimmer;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@keyframes shimmer {\n0% {\n    opacity: 0.3;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.3;\n}\n}\n@-webkit-keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@keyframes glimmer-one {\n0% {\n    -webkit-transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n            transform: translate3d(0%, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 0deg) scale(1, 2);\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n50% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n100% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, -45deg) scale(1, 2);\n}\n}\n@-webkit-keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n@keyframes glimmer-two {\n0% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n            transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, -90deg) skew(0deg, 45deg) scale(1, 0.5);\n}\n50% {\n    -webkit-transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n            transform: translate3d(0, 100%, 0) rotate3d(0, 0, 1, 0deg) skew(45deg, 0deg) scale(0.5, 1);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n            transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, 90deg) skew(0deg, 45deg) scale(1, 2);\n}\n100% {\n    -webkit-transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n            transform: translate3d(0, -100%, 0) rotate3d(0, 0, 1, 0deg) skew(-45deg, 0deg) scale(2, 1);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 104 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var CLASS_OPTIONS = {
+  a: 'one',
+  b: 'two'
+};
+var SHAPE_INDEXES = [1, 2, 3];
+var SHAPE_TYPES = [1, 2];
+var MODIFIER = { delay: 100 };
+var RANGE = {
+  delay: {
+    iridescent: [1, 10],
+    shimmer: [3, 12]
+  },
+  dimensions: {
+    height: [20, 40],
+    width: [20, 40]
+  },
+  position: {
+    vertical: [10, 30]
+  },
+  duration: {
+    iridescent: [10, 15],
+    shimmer: [2, 5]
+  },
+  radii: [1, 20]
+};
+
+var randomNumber = function randomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+};
+var randomNumberInRange = function randomNumberInRange(range) {
+  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
+};
+var lastIndex = function lastIndex(items) {
+  return items.length - 1;
+};
+var createShape = function createShape(index, type) {
+  return {
+    delay: {
+      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
+      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
+    },
+    direction: index === lastIndex(SHAPE_INDEXES) ? CLASS_OPTIONS.a : CLASS_OPTIONS.b,
+    duration: {
+      iridescent: randomNumberInRange(RANGE.duration.iridescent),
+      shimmer: randomNumberInRange(RANGE.duration.shimmer)
+    },
+    height: randomNumberInRange(RANGE.dimensions.height),
+    index: index,
+    radii: {
+      bl: randomNumberInRange(RANGE.radii),
+      br: randomNumberInRange(RANGE.radii),
+      tl: randomNumberInRange(RANGE.radii),
+      tr: randomNumberInRange(RANGE.radii)
+    },
+    type: type,
+    width: randomNumberInRange(RANGE.dimensions.width)
+  };
+};
+var shapeFactory = function shapeFactory(type) {
+  return SHAPE_INDEXES.map(function (index) {
+    return createShape(type, index);
+  });
+};
+var flatten = function flatten(list) {
+  return list.reduce(function (a, b) {
+    return a.concat(b);
+  });
+};
+var position = function position(list) {
+  return list.map(function (item, index) {
+    var section = 100 / (list.length + 1);
+    var left = section * (index + 1);
+    var verticalVariance = randomNumberInRange(RANGE.position.vertical);
+    var top = index % 2 === 0 ? 50 - verticalVariance : 50 + verticalVariance;
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left, top: top });
+  });
+};
+var getShapes = function getShapes() {
+  return position(flatten(SHAPE_TYPES.map(shapeFactory)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'IridescentBackdropPlanes',
+  data: function data() {
+    var shapes = getShapes();
+    return {
+      shapes: shapes
+    };
+  },
+
+  methods: {
+    getStyle: function getStyle(shape) {
+      var rules = ['animation-duration: ' + shape.duration.iridescent + 's, ' + shape.duration.shimmer + 's;', 'animation-delay: ' + shape.delay.iridescent + 'ms, ' + shape.delay.shimmer + 'ms;', 'border-radius: ' + shape.radii.bl + '%, ' + shape.radii.br + '%, ' + shape.radii.tl + '%, ' + shape.radii.tr + '%;', 'height: ' + shape.height + 'vmax;', 'left: ' + shape.left + 'vw;', 'top: ' + shape.top + 'vh;', 'width: ' + shape.width + 'vmax;'];
+      return rules.join('');
+    },
+    getClasses: function getClasses(shape) {
+      // return `background__shape shape shape--type-${shape.type}`;
+      return 'background__shape shape shape--type-' + shape.type + ' shape--glimmer-' + shape.direction;
+    }
+  }
+});
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "background" }, [
+    _c("div", { staticClass: "background__pane pane--iridescent" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "background__topography" },
+      _vm._l(_vm.shapes, function(shape) {
+        return _c("div", {
+          key: shape.type + shape.index,
+          class: _vm.getClasses(shape),
+          style: _vm.getStyle(shape)
+        })
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-21674201", module.exports)
+  }
+}
+
+/***/ }),
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -16971,120 +17041,7 @@ if (false) {
 }
 
 /***/ }),
-/* 108 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(109)
-}
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(111)
-/* template */
-var __vue_template__ = __webpack_require__(112)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-420e8fb2"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/controls/DemoControls.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-420e8fb2", Component.options)
-  } else {
-    hotAPI.reload("data-v-420e8fb2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(110);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("ede9ae50", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-420e8fb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoControls.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-420e8fb2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./DemoControls.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 111 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DemoNavigation__ = __webpack_require__(103);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DemoNavigation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__DemoNavigation__);
-//
-//
-//
-//
-//
-//
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'DemoControls',
-  components: { DemoNavigation: __WEBPACK_IMPORTED_MODULE_0__DemoNavigation___default.a }
-});
-
-/***/ }),
-/* 112 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -17107,6 +17064,46 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-420e8fb2", module.exports)
   }
 }
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "main" },
+    [
+      _c("router-view", { staticClass: "main__background" }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "main__content demo" },
+        [_c("DemoControls", { staticClass: "demo__controls" })],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7f989cbe", module.exports)
+  }
+}
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

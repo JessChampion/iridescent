@@ -1,18 +1,5 @@
-// ------- functions -------
-
-@function tint($color, $percentage) {
-  @return mix($color, white, $percentage);
-}
-
-@function color-stop($color, $stops) {
-  $new-stops: $color;
-
-  @for $i from 1 to $stops {
-    $new-stops: $new-stops , $color;
-  }
-
-  @return $new-stops;
-}
+@import './functions';
+@import './mixins';
 
 // --------  colors  -------
 
@@ -20,9 +7,13 @@ $color-black: #262626; // hsl 0 0 0.15
 $color-charcoal: #404040; // hsl 0 0 0.25
 $color-gray: #A6A6A6; // hsl 0 0 0.65
 $color-white: #FFF; // hsl 0 0 0
+$color-white-a15: transparentize($color-white, 0.85);
 $color-white-a65: transparentize($color-white, 0.35);
 $color-white-a85: transparentize($color-white, 0.15);
 $color-white-a100: transparentize($color-white, 1);
+$color-charcoal-a15: transparentize($color-charcoal, 0.85);
+$color-charcoal-a65: transparentize($color-charcoal, 0.35);
+$color-charcoal-a85: transparentize($color-charcoal, 0.15);
 
 $color-red: #EB475B; // hsl(0.98, 0.8, 0.6);
 $color-red-10: tint($color-red, 10%);
@@ -61,14 +52,20 @@ $color-orange-10: tint($color-orange, 10%);
 $color-orange-20: tint($color-orange, 20%);
 $color-orange-30: tint($color-orange, 30%);
 
-//$color-yellow-mid: lighten($color-yellow, 10%);
-//$color-yellow-light: lighten($color-yellow, 20%);
-//$color-yellow-white: lighten($color-yellow, 35%);
-
 // ---------  font  --------
 
 $font-size-base: 16px;
+$font-size-medium: 1.2rem;
+$font-size-large: 1.5rem;
 
 // --------  sizes  --------
 
 $size-gutter: 2;
+
+// -------  screens  -------
+
+$screen-md-min: 35rem !default;
+
+// -------  shadows  -------
+
+$shadow-base: 0 0 0.5rem $color-charcoal-a15;

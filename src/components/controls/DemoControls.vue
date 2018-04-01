@@ -14,5 +14,8 @@
 </script>
 
 <style scoped>
-
+  .controls {
+    height: 100%;
+    width: 100%;
+  }
 </style>
