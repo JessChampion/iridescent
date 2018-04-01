@@ -54,10 +54,9 @@
   const getBeams = () => position(flatten(BEAM_TYPES.map(beamFactory)));
 
   export default {
-    name: 'IridescentBackdrop',
+    name: 'IridescentBackdropBeams',
     data() {
       const beams = getBeams();
-      console.log(beams);
       return {
         beams
       };

@@ -12490,8 +12490,8 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdrop__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdrop___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdrop__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdropBeams__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdropBeams___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdropBeams__);
 //
 //
 //
@@ -12506,7 +12506,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Iridescent',
-  components: { IridescentBackdrop: __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdrop___default.a },
+  components: { IridescentBackdrop: __WEBPACK_IMPORTED_MODULE_0__components_background_IridescentBackdropBeams___default.a },
   data: function data() {
     return {
       content: []
@@ -12515,206 +12515,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(44)
-}
-var normalizeComponent = __webpack_require__(20)
-/* script */
-var __vue_script__ = __webpack_require__(46)
-/* template */
-var __vue_template__ = __webpack_require__(80)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "src/components/background/IridescentBackdrop.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-011b1511", Component.options)
-  } else {
-    hotAPI.reload("data-v-011b1511", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(45);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(19)("69ea5162", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-011b1511\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdrop.vue", function() {
-     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-011b1511\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdrop.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(18)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9c8ce);\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .beam {\n    height: 100vh;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n    position: absolute;\n    top: 0;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .beam--glimmer-left {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-left, sheen;\n              animation-name: glimmer-left, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .beam--glimmer-right {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-right, sheen;\n              animation-name: glimmer-right, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@-webkit-keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@-webkit-keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@-webkit-keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 46 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var BEAM_INDEXES = [1, 2, 3];
-var BEAM_TYPES = [1, 2];
-var MODIFIER = { delay: 100 };
-var RANGE = {
-  delay: {
-    iridescent: [1, 10],
-    shimmer: [3, 12]
-  },
-  duration: {
-    iridescent: [8, 12],
-    shimmer: [2, 5]
-  },
-  width: [5, 15]
-};
-
-var randomNumber = function randomNumber(min, max) {
-  return Math.floor(Math.random() * max) + min;
-};
-var randomNumberInRange = function randomNumberInRange(range) {
-  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
-};
-var lastIndex = function lastIndex(items) {
-  return items.length - 1;
-};
-var createBeam = function createBeam(index, type) {
-  return {
-    delay: {
-      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
-      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
-    },
-    direction: index === lastIndex(BEAM_INDEXES) ? 'left' : 'right',
-    duration: {
-      iridescent: randomNumberInRange(RANGE.duration.iridescent),
-      shimmer: randomNumberInRange(RANGE.duration.shimmer)
-    },
-    index: index,
-    type: type,
-    width: randomNumberInRange(RANGE.width)
-  };
-};
-var beamFactory = function beamFactory(type) {
-  return BEAM_INDEXES.map(function (index) {
-    return createBeam(type, index);
-  });
-};
-var flatten = function flatten(list) {
-  return list.reduce(function (a, b) {
-    return a.concat(b);
-  });
-};
-var position = function position(list) {
-  return list.map(function (item, index) {
-    var section = 100 / (list.length + 1);
-    var left = section * (index + 1);
-    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left });
-  });
-};
-var getBeams = function getBeams() {
-  return position(flatten(BEAM_TYPES.map(beamFactory)));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'LuminescenceApp',
-  data: function data() {
-    var beams = getBeams();
-    console.log(beams);
-    return {
-      beams: beams
-    };
-  },
-
-  methods: {
-    getStyle: function getStyle(beam) {
-      var rules = ['animation-duration: ' + beam.duration.iridescent + 's, ' + beam.duration.shimmer + 's;', 'animation-delay: ' + beam.delay.iridescent + 'ms, ' + beam.delay.shimmer + 'ms;', 'left: ' + beam.left + 'vw;', 'width: ' + beam.width + 'vw;'];
-      return rules.join('');
-    },
-    getClasses: function getClasses(beam) {
-      // return `background__beam beam beam--type-${beam.type}`;
-      return 'background__beam beam beam--type-' + beam.type + ' beam--glimmer-' + beam.direction;
-    }
-  }
-});
-
-/***/ }),
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13380,40 +13184,7 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 80 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "background" }, [
-    _c("div", { staticClass: "background__pane pane--iridescent" }),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "background__beams" },
-      _vm._l(_vm.beams, function(beam) {
-        return _c("div", {
-          key: beam.type + beam.index,
-          class: _vm.getClasses(beam),
-          style: _vm.getStyle(beam)
-        })
-      })
-    )
-  ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-011b1511", module.exports)
-  }
-}
-
-/***/ }),
+/* 80 */,
 /* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -13456,6 +13227,242 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(87)
+}
+var normalizeComponent = __webpack_require__(20)
+/* script */
+var __vue_script__ = __webpack_require__(89)
+/* template */
+var __vue_template__ = __webpack_require__(90)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/components/background/IridescentBackdropBeams.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0c068443", Component.options)
+  } else {
+    hotAPI.reload("data-v-0c068443", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(88);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(19)("64fc580e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0c068443\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0c068443\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./IridescentBackdropBeams.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(18)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nbody {\n  position: relative;\n}\n.background {\n  height: 100vh;\n  max-height: 100vh;\n  max-width: 100vw;\n  overflow: hidden;\n  position: absolute;\n  width: 100vw;\n}\n.background__pane {\n    left: -50vmax;\n    min-height: 200vmax;\n    min-width: 200vmax;\n    position: absolute;\n    top: -50vmax;\n    will-change: transform;\n}\n.background .pane--iridescent {\n    -webkit-animation: oscillate 25s linear;\n            animation: oscillate 25s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    background: #262626;\n    background: -webkit-gradient(linear, left top, right top, from(#f9c8ce), color-stop(#f9c8e0), color-stop(#e0c8f9), color-stop(#cfc8f9), color-stop(#c8d3f9), color-stop(#c8f9f9), color-stop(#c8f9e1), color-stop(#f9f7c8), to(#f9c8ce));\n    background: linear-gradient(to right, #f9c8ce, #f9c8e0, #e0c8f9, #cfc8f9, #c8d3f9, #c8f9f9, #c8f9e1, #f9f7c8, #f9c8ce);\n}\n.background__beams {\n    left: 0;\n    min-height: 100%;\n    min-width: 100%;\n    position: absolute;\n    top: 0;\n}\n.background .beam {\n    height: 100vh;\n    background: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0)), color-stop(rgba(255, 255, 255, 0.9)), to(rgba(255, 255, 255, 0)));\n    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));\n    position: absolute;\n    top: 0;\n    opacity: 0;\n    will-change: transform, opacity;\n}\n.background .beam--glimmer-left {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-left, sheen;\n              animation-name: glimmer-left, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n.background .beam--glimmer-right {\n      -webkit-animation-iteration-count: infinite;\n              animation-iteration-count: infinite;\n      -webkit-animation-name: glimmer-right, sheen;\n              animation-name: glimmer-right, sheen;\n      -webkit-animation-timing-function: linear;\n              animation-timing-function: linear;\n}\n@-webkit-keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@keyframes oscillate {\n0% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n25% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg);\n}\n75% {\n    -webkit-transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n            transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n            transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg);\n}\n}\n@-webkit-keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@keyframes oscillate2D {\n0% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n25% {\n    -webkit-transform: translate(-25%, 0) rotate(0deg);\n            transform: translate(-25%, 0) rotate(0deg);\n}\n50% {\n    -webkit-transform: translate(0, 0) rotate(-45deg);\n            transform: translate(0, 0) rotate(-45deg);\n}\n75% {\n    -webkit-transform: translate(25%, 0) rotate(0deg);\n            transform: translate(25%, 0) rotate(0deg);\n}\n100% {\n    -webkit-transform: translate(0, 0) rotate(45deg);\n            transform: translate(0, 0) rotate(45deg);\n}\n}\n@-webkit-keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@keyframes sheen {\n0% {\n    opacity: 0.1;\n}\n25% {\n    opacity: 0.45;\n}\n50% {\n    opacity: 1;\n}\n75% {\n    opacity: 0.45;\n}\n100% {\n    opacity: 0.1;\n}\n}\n@-webkit-keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@keyframes glimmer-left {\n0% {\n    -webkit-transform: translate3d(0%, 0, 0);\n            transform: translate3d(0%, 0, 0);\n    opacity: 0.2;\n}\n25% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n    opacity: 0.5;\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.8;\n}\n75% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    opacity: 0.5;\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n    opacity: 0.2;\n}\n}\n@-webkit-keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@keyframes glimmer-right {\n0% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n25% {\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n}\n50% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n75% {\n    -webkit-transform: translate3d(-100%, 0, 0);\n            transform: translate3d(-100%, 0, 0);\n}\n100% {\n    -webkit-transform: translate3d(0, 0, 0);\n            transform: translate3d(0, 0, 0);\n}\n}\n@-webkit-keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-left-2D {\n0% {\n    -webkit-transform: translate(0%, 0);\n            transform: translate(0%, 0);\n}\n25% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@-webkit-keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n@keyframes glimmer-right-2D {\n0% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n25% {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n}\n50% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n75% {\n    -webkit-transform: translate(-100%, 0);\n            transform: translate(-100%, 0);\n}\n100% {\n    -webkit-transform: translate(0, 0);\n            transform: translate(0, 0);\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray__);
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var BEAM_INDEXES = [1, 2, 3];
+var BEAM_TYPES = [1, 2];
+var MODIFIER = { delay: 100 };
+var RANGE = {
+  delay: {
+    iridescent: [1, 10],
+    shimmer: [3, 12]
+  },
+  duration: {
+    iridescent: [8, 12],
+    shimmer: [2, 5]
+  },
+  width: [5, 15]
+};
+
+var randomNumber = function randomNumber(min, max) {
+  return Math.floor(Math.random() * max) + min;
+};
+var randomNumberInRange = function randomNumberInRange(range) {
+  return randomNumber.apply(undefined, __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_toConsumableArray___default()(range));
+};
+var lastIndex = function lastIndex(items) {
+  return items.length - 1;
+};
+var createBeam = function createBeam(index, type) {
+  return {
+    delay: {
+      iridescent: randomNumberInRange(RANGE.delay.iridescent) * MODIFIER.delay,
+      shimmer: randomNumberInRange(RANGE.delay.shimmer) * MODIFIER.delay
+    },
+    direction: index === lastIndex(BEAM_INDEXES) ? 'left' : 'right',
+    duration: {
+      iridescent: randomNumberInRange(RANGE.duration.iridescent),
+      shimmer: randomNumberInRange(RANGE.duration.shimmer)
+    },
+    index: index,
+    type: type,
+    width: randomNumberInRange(RANGE.width)
+  };
+};
+var beamFactory = function beamFactory(type) {
+  return BEAM_INDEXES.map(function (index) {
+    return createBeam(type, index);
+  });
+};
+var flatten = function flatten(list) {
+  return list.reduce(function (a, b) {
+    return a.concat(b);
+  });
+};
+var position = function position(list) {
+  return list.map(function (item, index) {
+    var section = 100 / (list.length + 1);
+    var left = section * (index + 1);
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, item, { left: left });
+  });
+};
+var getBeams = function getBeams() {
+  return position(flatten(BEAM_TYPES.map(beamFactory)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'IridescentBackdropBeams',
+  data: function data() {
+    var beams = getBeams();
+    return {
+      beams: beams
+    };
+  },
+
+  methods: {
+    getStyle: function getStyle(beam) {
+      var rules = ['animation-duration: ' + beam.duration.iridescent + 's, ' + beam.duration.shimmer + 's;', 'animation-delay: ' + beam.delay.iridescent + 'ms, ' + beam.delay.shimmer + 'ms;', 'left: ' + beam.left + 'vw;', 'width: ' + beam.width + 'vw;'];
+      return rules.join('');
+    },
+    getClasses: function getClasses(beam) {
+      // return `background__beam beam beam--type-${beam.type}`;
+      return 'background__beam beam beam--type-' + beam.type + ' beam--glimmer-' + beam.direction;
+    }
+  }
+});
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "background" }, [
+    _c("div", { staticClass: "background__pane pane--iridescent" }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "background__beams" },
+      _vm._l(_vm.beams, function(beam) {
+        return _c("div", {
+          key: beam.type + beam.index,
+          class: _vm.getClasses(beam),
+          style: _vm.getStyle(beam)
+        })
+      })
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0c068443", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

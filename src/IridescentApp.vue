@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import IridescentBackdrop from './components/background/IridescentBackdrop';
+  import IridescentBackdrop from './components/background/IridescentBackdropBeams';
 
   export default {
     name: 'Iridescent',
