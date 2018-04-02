@@ -3,11 +3,13 @@
     <h1 class="controls__title">Iridescent</h1>
     <h2 class="controls__subtitle">
       Background experiments
-      <a class="controls__github icon icon--mark-github visible--sm-up"
+      <a href="https://github.com/JessChampion/iridescent"
+         class="controls__github icon icon--mark-github visible--sm-up"
          title="github"/>
     </h2>
     <DemoNavigation class="controls__navigation"/>
-    <a class="controls__github icon icon--mark-github hidden--sm-up"
+    <a href="https://github.com/JessChampion/iridescent"
+       class="controls__github icon icon--mark-github hidden--sm-up"
        title="github"/>
   </div>
 </template>

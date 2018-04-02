@@ -1,7 +1,7 @@
 {
   "name": "iridescent",
-  "version": "0.0.1",
-  "description": "portfolio",
+  "version": "0.1.0",
+  "description": "background experiments",
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
@@ -30,6 +30,6 @@
     "test:coverage": "yarn test --coverage",
     "test:watch": "yarn test --watch --notify",
     "package": "node_modules/cross-env/dist/bin/cross-env.js NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "deploy:demo": "git subtree push --prefix dist/demo origin gh-pages"
+    "deploy:demo": "git subtree push --prefix dist origin gh-pages"
   }
 }
