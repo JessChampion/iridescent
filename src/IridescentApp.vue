@@ -45,6 +45,8 @@
     }
 
     &__content {
+      align-items: center;
+      display: flex;
       left: 0;
       height: calc(100vh - (2 * #{$size-gutter}rem));
       margin: #{$size-gutter}rem;

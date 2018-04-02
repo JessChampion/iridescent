@@ -3,7 +3,7 @@
     <div class="background__pane pane--iridescent"/>
     <div class="background__beams">
       <div v-for="beam in beams"
-           :key="beam.type + beam.index"
+           :key="beam.type + '-' + beam.index"
            :class="getClasses(beam)"
            :style="getStyle(beam)"
       />
