@@ -37,29 +37,32 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 100%;
     justify-content: center;
-    width: 100%;
 
     @include breakpoint-md-up {
       flex-direction: row;
-      justify-content: space-around;
+      justify-content: space-between;
     }
 
     &__link {
-      background-color: $color-white-a15;
+      background-color: $color-charcoal-a15;
       border: 0.1rem $color-charcoal-a65 solid;
       border-radius: 1rem;
       color: $color-charcoal;
+      font-family: 'Cutive Mono', monospace;
       font-size: $font-size-medium;
       font-weight: 200;
       line-height: 1.5;
       margin: 0.5rem 0;
       min-width: 4rem;
-      padding: 0.5rem 1.25rem 0.6rem;
+      padding: 0.4rem 1.25rem 0.5rem;
       text-transform: lowercase;
       text-decoration: none;
       text-align: center;
+
+      &.router-link-active {
+        background-color: $color-white-a15;
+      }
     }
   }
 </style>

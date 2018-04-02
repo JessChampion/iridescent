@@ -3,7 +3,7 @@
     <div class="background__pane pane--iridescent"/>
     <div class="background__topography">
       <div v-for="shape in shapes"
-           :key="shape.type + shape.index"
+           :key="shape.type +'-'+ shape.index"
            :class="getClasses(shape)"
            :style="getStyle(shape)"
       />

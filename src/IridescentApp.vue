@@ -9,18 +9,18 @@
 
 <script>
   import DemoControls from './components/controls/DemoControls';
+  import IridescentBackdrop from './components/backgrounds/IridescentBackdrop';
   import IridescentBackdropBeams from './components/backgrounds/IridescentBackdropBeams';
   import IridescentBackdropDisks from './components/backgrounds/IridescentBackdropDisks';
-  import IridescentBackdropGradients from './components/backgrounds/IridescentBackdropGradients';
   import IridescentBackdropPlanes from './components/backgrounds/IridescentBackdropPlanes';
 
   export default {
     name: 'Iridescent',
     components: {
       DemoControls,
+      IridescentBackdrop,
       IridescentBackdropBeams,
       IridescentBackdropDisks,
-      IridescentBackdropGradients,
       IridescentBackdropPlanes
     },
     data() {
@@ -58,7 +58,7 @@
 
   .demo {
     &__controls {
-      max-width: 35rem;
+      max-width: 30rem;
       margin: 0 auto;
       width: 100%;
     }
