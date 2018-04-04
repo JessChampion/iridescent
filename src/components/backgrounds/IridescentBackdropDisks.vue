@@ -163,7 +163,7 @@
               transparentize($color-white, 1),
               transparentize($color-white, 1)
       );
-      border-radius: 40%;
+      border-radius: 50%;
       position: absolute;
       opacity: 0;
       will-change: transform, opacity;
