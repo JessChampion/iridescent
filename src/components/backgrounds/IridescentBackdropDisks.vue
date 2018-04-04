@@ -34,8 +34,7 @@
     duration: {
       iridescent: [10, 15],
       shimmer: [2, 5]
-    },
-    radii: [1, 20]
+    }
   };
 
   const randomNumber = (min, max) => Math.floor(Math.random() * max) + min;
@@ -53,12 +52,6 @@
     },
     height: randomNumberInRange(RANGE.dimensions.height),
     index,
-    radii: {
-      bl: randomNumberInRange(RANGE.radii),
-      br: randomNumberInRange(RANGE.radii),
-      tl: randomNumberInRange(RANGE.radii),
-      tr: randomNumberInRange(RANGE.radii)
-    },
     type,
     width: randomNumberInRange(RANGE.dimensions.width)
   });
@@ -86,7 +79,6 @@
         const rules = [
           `animation-duration: ${shape.duration.iridescent}s, ${shape.duration.shimmer}s;`,
           `animation-delay: ${shape.delay.iridescent}ms, ${shape.delay.shimmer}ms;`,
-          `border-radius: ${shape.radii.bl}%, ${shape.radii.br}%, ${shape.radii.tl}%, ${shape.radii.tr}%;`,
           `height: ${shape.height}vmax;`,
           `left: ${shape.left}vw;`,
           `top: ${shape.top}vh;`,
@@ -171,7 +163,7 @@
               transparentize($color-white, 1),
               transparentize($color-white, 1)
       );
-      border-radius: 10%;
+      border-radius: 40%;
       position: absolute;
       opacity: 0;
       will-change: transform, opacity;
