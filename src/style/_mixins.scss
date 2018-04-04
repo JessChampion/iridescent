@@ -1,0 +1,17 @@
+@mixin breakpoint-custom-up($min) {
+  @media all and (min-width: $min) {
+    @content;
+  }
+}
+
+@mixin breakpoint-sm-up {
+  @include breakpoint-custom-up($screen-sm-min) {
+    @content;
+  }
+}
+
+@mixin breakpoint-md-up {
+  @include breakpoint-custom-up($screen-md-min) {
+    @content;
+  }
+}

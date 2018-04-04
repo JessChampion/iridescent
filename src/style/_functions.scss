@@ -1,0 +1,13 @@
+@function tint($color, $percentage) {
+  @return mix($color, white, $percentage);
+}
+
+@function color-stop($color, $stops) {
+  $new-stops: $color;
+
+  @for $i from 1 to $stops {
+    $new-stops: $new-stops , $color;
+  }
+
+  @return $new-stops;
+}

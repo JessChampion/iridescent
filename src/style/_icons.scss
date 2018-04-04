@@ -1,0 +1,27 @@
+$icons: (
+  mark-github,
+  three-bars
+);
+
+@each $icon in $icons {
+  .icon.icon--#{$icon} {
+    //background: url('./icons/#{$icon}.svg'), none;
+    background: url('./icons/#{$icon}.svg');
+  }
+}
+
+.icon {
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-position: center top;
+  display: inline-block;
+  height: 2rem;
+  vertical-align: middle;
+  width: 2rem;
+
+  &--small {
+    height: 1.5rem;
+    vertical-align: middle;
+    width: 1.5rem;
+  }
+}

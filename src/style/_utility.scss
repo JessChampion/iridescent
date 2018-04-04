@@ -1,0 +1,29 @@
+.hidden {
+  &--sm-up {
+    @include breakpoint-custom-up($screen-sm-min) {
+      display: none;
+    }
+  }
+
+  &--md-up {
+    @include breakpoint-custom-up($screen-sm-min) {
+      display: none;
+    }
+  }
+}
+
+.visible {
+  &--sm-up {
+    display: none;
+    @include breakpoint-custom-up($screen-sm-min) {
+      display: inline-block;
+    }
+  }
+
+  &--md-up {
+    display: none;
+    @include breakpoint-custom-up($screen-sm-min) {
+      display: inline-block;
+    }
+  }
+}

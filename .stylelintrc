@@ -6,8 +6,11 @@
       true,
       {
         "ignoreAtRules": [
+          "content",
+          "each",
           "for",
           "function",
+          "include",
           "mixin",
           "return"
         ]
