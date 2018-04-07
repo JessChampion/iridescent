@@ -45,7 +45,7 @@
       border-radius: 1rem;
       color: $color-charcoal;
       flex-basis: 25%;
-      font-family: 'Cutive Mono', monospace;
+      font-family: 'Cutive Mono', 'Courier New', monospace;
       font-size: $font-size-medium;
       line-height: 1.5;
       margin: 0.5rem 0;
