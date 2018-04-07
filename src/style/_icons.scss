@@ -1,19 +1,23 @@
+@import './config';
+
 $icons: (
+  close-outline,
   mark-github,
-  three-bars
+  menu-outline
 );
 
 @each $icon in $icons {
   .icon.icon--#{$icon} {
-    //background: url('./icons/#{$icon}.svg'), none;
-    background: url('./icons/#{$icon}.svg');
+    background-image: url('./icons/#{$icon}.svg');
   }
 }
 
 .icon {
+  background-color: transparent;
   background-repeat: no-repeat !important;
   background-size: contain !important;
   background-position: center top;
+  border: none;
   display: inline-block;
   height: 2rem;
   vertical-align: middle;
@@ -23,5 +27,23 @@ $icons: (
     height: 1.5rem;
     vertical-align: middle;
     width: 1.5rem;
+  }
+
+  &--link {
+    border-radius: 50%;
+    opacity: 0.45;
+
+    &:active,
+    &:focus,
+    &:hover {
+      cursor: pointer;
+      opacity: 0.65;
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: $shadow-outline;
+      outline: none;
+    }
   }
 }

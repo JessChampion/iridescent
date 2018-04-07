@@ -2,7 +2,8 @@
   <div class="main">
     <router-view class="main__background"/>
     <div class="main__content demo">
-      <DemoControls class="demo__controls"/>
+      <DemoControls :links="links"
+                    class="demo__controls"/>
     </div>
   </div>
 </template>
@@ -13,6 +14,13 @@
   import IridescentBackdropBeams from './components/backgrounds/IridescentBackdropBeams';
   import IridescentBackdropDisks from './components/backgrounds/IridescentBackdropDisks';
   import IridescentBackdropPlanes from './components/backgrounds/IridescentBackdropPlanes';
+  import { routes } from './router';
+
+  const getLinks = routesConfig => routesConfig.map((route, index) => ({
+    index,
+    name: route.name,
+    path: route.path
+  }));
 
   export default {
     name: 'Iridescent',
@@ -25,7 +33,7 @@
     },
     data() {
       return {
-        content: []
+        links: getLinks(routes)
       };
     }
   };
