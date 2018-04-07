@@ -1,15 +1,21 @@
-.icon.icon--mark-github {
-  background: url(images/mark-github.svg?3a7d1361db360c0522b253292fb37cf7);
+.icon.icon--close-outline {
+  background-image: url(images/close-outline.svg?c63c6e6ef53ca9db2b1a0d0a14965a85);
 }
 
-.icon.icon--three-bars {
-  background: url(images/three-bars.svg?2505ff8abbd469a321e23125d8341f10);
+.icon.icon--mark-github {
+  background-image: url(images/mark-github.svg?3a7d1361db360c0522b253292fb37cf7);
+}
+
+.icon.icon--menu-outline {
+  background-image: url(images/menu-outline.svg?f0320e898822ff6a301750323862b0a4);
 }
 
 .icon {
+  background-color: transparent;
   background-repeat: no-repeat !important;
   background-size: contain !important;
   background-position: center top;
+  border: none;
   display: inline-block;
   height: 2rem;
   vertical-align: middle;
@@ -20,6 +26,36 @@
   height: 1.5rem;
   vertical-align: middle;
   width: 1.5rem;
+}
+
+.icon--link {
+  border-radius: 50%;
+  opacity: 0.45;
+}
+
+.icon--link:active,
+.icon--link:focus,
+.icon--link:hover {
+  cursor: pointer;
+  opacity: 0.65;
+}
+
+.icon--link:active,
+.icon--link:focus {
+  -webkit-box-shadow: 0 0 0.65rem -0.05rem #476BEB;
+          box-shadow: 0 0 0.65rem -0.05rem #476BEB;
+  outline: none;
+}
+
+.fade__enter-active,
+.fade__leave-active {
+  -webkit-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade__enter,
+.fade__leave-to {
+  opacity: 0;
 }
 
 @media all and (min-width: 30rem) {
