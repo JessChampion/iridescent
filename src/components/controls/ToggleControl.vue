@@ -61,17 +61,4 @@
       will-change: opacity;
     }
   }
-
-  .fade {
-    &-enter-active,
-    &-leave-active {
-      transition: opacity 300ms ease-in-out;
-    }
-
-    &-enter,
-    &-leave-to {
-      opacity: 0;
-    }
-  }
-
 </style>
