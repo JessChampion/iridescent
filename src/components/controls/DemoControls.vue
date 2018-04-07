@@ -1,32 +1,45 @@
 <template>
-  <div class="controls">
-    <h1 class="controls__title">Iridescent</h1>
-    <h2 class="controls__subtitle">
-      Background experiments
+  <toggle-control class="toggle-control">
+    <div class="demo-controls">
+      <h1 class="demo-controls__title">Iridescent</h1>
+      <h2 class="demo-controls__subtitle">
+        Background experiments
+        <a href="https://github.com/JessChampion/iridescent"
+           class="demo-controls__github icon icon--link icon--mark-github visible--sm-up"
+           title="github"/>
+      </h2>
+      <DemoNavigation :links="links"
+                      class="demo-controls__navigation"/>
       <a href="https://github.com/JessChampion/iridescent"
-         class="controls__github icon icon--mark-github visible--sm-up"
+         class="demo-controls__github icon icon--link icon--mark-github hidden--sm-up"
          title="github"/>
-    </h2>
-    <DemoNavigation class="controls__navigation"/>
-    <a href="https://github.com/JessChampion/iridescent"
-       class="controls__github icon icon--mark-github hidden--sm-up"
-       title="github"/>
-  </div>
+    </div>
+  </toggle-control>
 </template>
 
 <script>
-  import DemoNavigation from './DemoNavigation';
+  import DemoNavigation from './NavigationControl';
+  import ToggleControl from './ToggleControl';
 
   export default {
     name: 'DemoControls',
-    components: { DemoNavigation }
+    components: {
+      DemoNavigation,
+      ToggleControl
+    },
+    props: {
+      links: {
+        type: Array,
+        default: () => []
+      }
+    }
   };
 </script>
 
 <style lang="scss" scoped>
   @import '../../style/config';
 
-  .controls {
+  .demo-controls {
     text-align: center;
 
     &__title,
@@ -74,13 +87,9 @@
       }
     }
 
-    &__navigation {
-    }
-
     &__github {
       float: right;
-      opacity: 0.45;
-      margin: 2rem 1.2rem 0 0;
+      margin: 2rem 0.75rem 0 0;
 
       @include breakpoint-sm-up {
         height: 6vw;
@@ -92,11 +101,6 @@
         height: 2rem;
         margin: 0.75rem 0 0;
         width: 2rem;
-      }
-
-      &:hover {
-        cursor: pointer;
-        opacity: 0.65;
       }
     }
   }

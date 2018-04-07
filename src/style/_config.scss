@@ -12,6 +12,7 @@ $color-white-a65: transparentize($color-white, 0.35);
 $color-white-a85: transparentize($color-white, 0.15);
 $color-white-a100: transparentize($color-white, 1);
 $color-charcoal-a15: transparentize($color-charcoal, 0.85);
+$color-charcoal-a45: transparentize($color-charcoal, 0.55);
 $color-charcoal-a65: transparentize($color-charcoal, 0.35);
 $color-charcoal-a85: transparentize($color-charcoal, 0.15);
 
@@ -66,7 +67,13 @@ $size-gutter: 2;
 
 $screen-sm-min: 30rem !default;
 $screen-md-min: 35rem !default;
+$screen-lg-min: 40rem !default;
 
 // -------  shadows  -------
 
 $shadow-base: 0 0 0.5rem $color-charcoal-a15;
+$shadow-outline: 0 0 0.65rem -0.05rem $color-blue;
+
+// ---------  border  --------
+
+$border-standard: 0.1rem $color-charcoal-a65 solid;

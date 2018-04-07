@@ -15,3 +15,9 @@
     @content;
   }
 }
+
+@mixin breakpoint-lg-up {
+  @include breakpoint-custom-up($screen-lg-min) {
+    @content;
+  }
+}
