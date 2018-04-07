@@ -22,8 +22,8 @@ The following yarn scripts are available for build and deploy:
     _Note: If github pages is set up on your repository this will update it with your latest changes._
     
 ### Code style 
-Linters have been set up to enforce consistant code style and practices for javascript and scss code.
-These can be intergrated into your IDE  or run manually with the following yarn scripts:  
+Linters have been set up to enforce consistent code style and practices for javascript and scss code.
+These can be integrated into your IDE  or run manually with the following yarn scripts:  
 - `yarn: lint`: lint both javascript and scss code
 - `yarn: lint:es`: lint javascript code
 - `yarn: lint:style`: lint scss code   

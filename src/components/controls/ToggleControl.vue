@@ -57,6 +57,7 @@
         opacity: 0.65;
       }
     }
+
     &__panel {
       will-change: opacity;
     }

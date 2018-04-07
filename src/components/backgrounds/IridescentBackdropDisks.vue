@@ -130,7 +130,9 @@
         animation: oscillate $bg-speed linear;
         animation-iteration-count: infinite;
         background: $color-black;
-        background: linear-gradient(to right,
+        background:
+          linear-gradient(
+            to right,
             $color-red-30,
             $color-pink-30,
             $color-purple-30,
@@ -141,7 +143,7 @@
             $color-yellow-30,
             $color-orange-30,
             $color-red-30
-        );
+          );
       }
     }
 
@@ -154,15 +156,16 @@
     }
 
     .shape {
-      background: radial-gradient(
-              transparentize($color-white, 0),
-              transparentize($color-white, 0),
-              transparentize($color-white, 0),
-              transparentize($color-white, 0.3),
-              transparentize($color-white, 1),
-              transparentize($color-white, 1),
-              transparentize($color-white, 1)
-      );
+      background:
+        radial-gradient(
+          transparentize($color-white, 0),
+          transparentize($color-white, 0),
+          transparentize($color-white, 0),
+          transparentize($color-white, 0.3),
+          transparentize($color-white, 1),
+          transparentize($color-white, 1),
+          transparentize($color-white, 1)
+        );
       border-radius: 50%;
       position: absolute;
       opacity: 0;
@@ -184,19 +187,33 @@
 
   @keyframes oscillate {
     0% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
+
     25% {
-      transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(-25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     50% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -#{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, -#{$tilt}deg);
     }
+
     75% {
-      transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     100% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
   }
 
@@ -204,15 +221,19 @@
     0% {
       opacity: 0.3;
     }
+
     25% {
       opacity: 0.45;
     }
+
     50% {
       opacity: 1;
     }
+
     75% {
       opacity: 0.45;
     }
+
     100% {
       opacity: 0.3;
     }
@@ -221,76 +242,84 @@
   @keyframes glimmer-one {
     0% {
       transform:
-          translate3d(0%, 100%, 0)
-          rotate3d(0, 0, 1, #{$shape-rotate}deg)
-          skew(0deg, 0deg)
-          scale(1, $shape-scale-max);
+        translate3d(0%, 100%, 0)
+        rotate3d(0, 0, 1, #{$shape-rotate}deg)
+        skew(0deg, 0deg)
+        scale(1, $shape-scale-max);
     }
+
     25% {
       transform:
-          translate3d(-100%, 0, 0)
-          rotate3d(0, 0, 1, 0deg)
-          skew(#{$shape-skew}deg, 0deg)
-          scale($shape-scale-min, 1);
+        translate3d(-100%, 0, 0)
+        rotate3d(0, 0, 1, 0deg)
+        skew(#{$shape-skew}deg, 0deg)
+        scale($shape-scale-min, 1);
     }
+
     50% {
       transform:
-          translate3d(0, -100%, 0)
-          rotate3d(0, 0, 1, -#{$shape-rotate}deg)
-          skew(0deg, #{$shape-skew}deg)
-          scale(1, $shape-scale-min);
+        translate3d(0, -100%, 0)
+        rotate3d(0, 0, 1, -#{$shape-rotate}deg)
+        skew(0deg, #{$shape-skew}deg)
+        scale(1, $shape-scale-min);
     }
+
     75% {
       transform:
-          translate3d(100%, 0, 0)
-          rotate3d(0, 0, 1, 0deg)
-          skew(-#{$shape-skew}deg, 0deg)
-          scale($shape-scale-max, 1);
+        translate3d(100%, 0, 0)
+        rotate3d(0, 0, 1, 0deg)
+        skew(-#{$shape-skew}deg, 0deg)
+        scale($shape-scale-max, 1);
     }
+
     100% {
       transform:
-          translate3d(0, 100%, 0)
-          rotate3d(0, 0, 1, #{$shape-rotate}deg)
-          skew(0deg, -#{$shape-skew}deg)
-          scale(1, $shape-scale-max);
+        translate3d(0, 100%, 0)
+        rotate3d(0, 0, 1, #{$shape-rotate}deg)
+        skew(0deg, -#{$shape-skew}deg)
+        scale(1, $shape-scale-max);
     }
   }
 
   @keyframes glimmer-two {
     0% {
       transform:
-          translate3d(0, -100%, 0)
-          rotate3d(0, 0, 1, 0deg)
-          skew(-#{$shape-skew}deg, 0deg)
-          scale($shape-scale-max, 1);
+        translate3d(0, -100%, 0)
+        rotate3d(0, 0, 1, 0deg)
+        skew(-#{$shape-skew}deg, 0deg)
+        scale($shape-scale-max, 1);
     }
+
     25% {
       transform:
-          translate3d(100%, 0, 0)
-          rotate3d(0, 0, 1, -#{$shape-rotate}deg)
-          skew(0deg, #{$shape-skew}deg)
-          scale(1, $shape-scale-min);
+        translate3d(100%, 0, 0)
+        rotate3d(0, 0, 1, -#{$shape-rotate}deg)
+        skew(0deg, #{$shape-skew}deg)
+        scale(1, $shape-scale-min);
     }
+
     50% {
       transform:
-          translate3d(0, 100%, 0)
-          rotate3d(0, 0, 1, 0deg)
-          skew(#{$shape-skew}deg, 0deg)
-          scale($shape-scale-min, 1);
+        translate3d(0, 100%, 0)
+        rotate3d(0, 0, 1, 0deg)
+        skew(#{$shape-skew}deg, 0deg)
+        scale($shape-scale-min, 1);
     }
+
     75% {
       transform:
-          translate3d(-100%, 0, 0)
-          rotate3d(0, 0, 1, #{$shape-rotate}deg)
-          skew(0deg, #{$shape-skew}deg)
-          scale(1, $shape-scale-max);
+        translate3d(-100%, 0, 0)
+        rotate3d(0, 0, 1, #{$shape-rotate}deg)
+        skew(0deg, #{$shape-skew}deg)
+        scale(1, $shape-scale-max);
     }
+
     100% {
       transform:
-          translate3d(0, -100%, 0)
-          rotate3d(0, 0, 1, 0deg)
-          skew(-#{$shape-skew}deg, 0deg)
-          scale($shape-scale-max, 1);
+        translate3d(0, -100%, 0)
+        rotate3d(0, 0, 1, 0deg)
+        skew(-#{$shape-skew}deg, 0deg)
+        scale($shape-scale-max, 1);
     }
   }
 </style>

@@ -7,7 +7,7 @@
 
 <script>
   export default {
-    name: 'IridescentBackdropGradients.vue',
+    name: 'IridescentBackdropGradients'
   };
 </script>
 
@@ -43,7 +43,9 @@
         animation: oscillate $bg-speed linear;
         animation-iteration-count: infinite;
         background: $color-black;
-        background: linear-gradient(to right,
+        background:
+          linear-gradient(
+            to right,
             $color-red-30,
             $color-pink-30,
             $color-purple-30,
@@ -52,15 +54,17 @@
             $color-cyan-30,
             $color-green-30,
             $color-yellow-30,
-          //$color-orange-30,
+            //$color-orange-30,
             $color-red-30
-        );
+          );
       }
 
       &--beams {
         animation: shimmer $bg-speed linear;
         animation-iteration-count: infinite;
-        background: linear-gradient(to right,
+        background:
+          linear-gradient(
+            to right,
             $color-white-a100,
             $color-white-a85,
             color-stop($color-white-a100, 2),
@@ -74,7 +78,7 @@
             color-stop($color-white-a100, 3),
             $color-white-a85,
             color-stop($color-white-a100, 1)
-        );
+          );
       }
     }
 
@@ -89,37 +93,65 @@
 
   @keyframes oscillate {
     0% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
+
     25% {
-      transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(-25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     50% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -#{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, -#{$tilt}deg);
     }
+
     75% {
-      transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     100% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
   }
 
   @keyframes oscillate2D {
     0% {
-      transform: translate(0, 0) rotate(#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(#{$tilt}deg);
     }
+
     25% {
-      transform: translate(-25%, 0) rotate(0deg);
+      transform:
+        translate(-25%, 0)
+        rotate(0deg);
     }
+
     50% {
-      transform: translate(0, 0) rotate(-#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(-#{$tilt}deg);
     }
+
     75% {
-      transform: translate(25%, 0) rotate(0deg);
+      transform:
+        translate(25%, 0)
+        rotate(0deg);
     }
+
     100% {
-      transform: translate(0, 0) rotate(#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(#{$tilt}deg);
     }
   }
 
@@ -127,15 +159,19 @@
     0% {
       transform: translate3d(0, 0, 0);
     }
+
     25% {
       transform: translate3d(25%, 0, 0);
     }
+
     50% {
       transform: translate3d(0, 0, 0);
     }
+
     75% {
       transform: translate3d(-25%, 0, 0);
     }
+
     100% {
       transform: translate3d(0, 0, 0);
     }
@@ -145,15 +181,19 @@
     0% {
       transform: translate(0, 0);
     }
+
     25% {
       transform: translate(25%, 0);
     }
+
     50% {
       transform: translate(0, 0);
     }
+
     75% {
       transform: translate(-25%, 0);
     }
+
     100% {
       transform: translate(0, 0);
     }

@@ -115,7 +115,9 @@
         animation: oscillate $bg-speed linear;
         animation-iteration-count: infinite;
         background: $color-black;
-        background: linear-gradient(to right,
+        background:
+          linear-gradient(
+            to right,
             $color-red-30,
             $color-pink-30,
             $color-purple-30,
@@ -126,7 +128,7 @@
             $color-yellow-30,
             $color-orange-30,
             $color-red-30
-        );
+          );
       }
     }
 
@@ -140,12 +142,13 @@
 
     .beam {
       height: 100vh;
-      background: linear-gradient(
-              to right,
-              transparentize($color-white, 1),
-              transparentize($color-white, 0.1),
-              transparentize($color-white, 1)
-      );
+      background:
+        linear-gradient(
+          to right,
+          transparentize($color-white, 1),
+          transparentize($color-white, 0.1),
+          transparentize($color-white, 1)
+        );
       position: absolute;
       top: 0;
       opacity: 0;
@@ -167,37 +170,65 @@
 
   @keyframes oscillate {
     0% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
+
     25% {
-      transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(-25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     50% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -#{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, -#{$tilt}deg);
     }
+
     75% {
-      transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);
+      transform:
+        translate3d(25%, 0, 0)
+        rotate3d(0, 0, 1, 0deg);
     }
+
     100% {
-      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
+      transform:
+        translate3d(0, 0, 0)
+        rotate3d(0, 0, 1, #{$tilt}deg);
     }
   }
 
   @keyframes oscillate2D {
     0% {
-      transform: translate(0, 0) rotate(#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(#{$tilt}deg);
     }
+
     25% {
-      transform: translate(-25%, 0) rotate(0deg);
+      transform:
+        translate(-25%, 0)
+        rotate(0deg);
     }
+
     50% {
-      transform: translate(0, 0) rotate(-#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(-#{$tilt}deg);
     }
+
     75% {
-      transform: translate(25%, 0) rotate(0deg);
+      transform:
+        translate(25%, 0)
+        rotate(0deg);
     }
+
     100% {
-      transform: translate(0, 0) rotate(#{$tilt}deg);
+      transform:
+        translate(0, 0)
+        rotate(#{$tilt}deg);
     }
   }
 
@@ -205,15 +236,19 @@
     0% {
       opacity: 0.1;
     }
+
     25% {
       opacity: 0.45;
     }
+
     50% {
       opacity: 1;
     }
+
     75% {
       opacity: 0.45;
     }
+
     100% {
       opacity: 0.1;
     }
@@ -224,18 +259,22 @@
       transform: translate3d(0%, 0, 0);
       opacity: 0.2;
     }
+
     25% {
       transform: translate3d(-100%, 0, 0);
       opacity: 0.5;
     }
+
     50% {
       transform: translate3d(0, 0, 0);
       opacity: 0.8;
     }
+
     75% {
       transform: translate3d(100%, 0, 0);
       opacity: 0.5;
     }
+
     100% {
       transform: translate3d(0, 0, 0);
       opacity: 0.2;
@@ -246,17 +285,21 @@
     0% {
       transform: translate3d(0, 0, 0);
     }
+
     25% {
-      transform: translate3d(100%, 0, 0)
+      transform: translate3d(100%, 0, 0);
     }
+
     50% {
       transform: translate3d(0, 0, 0);
     }
+
     75% {
       transform: translate3d(-100%, 0, 0);
     }
+
     100% {
-      transform: translate3d(0, 0, 0)
+      transform: translate3d(0, 0, 0);
     }
   }
 
@@ -264,17 +307,21 @@
     0% {
       transform: translate(0%, 0);
     }
+
     25% {
-      transform: translate(-100%, 0)
+      transform: translate(-100%, 0);
     }
+
     50% {
       transform: translate(0, 0);
     }
+
     75% {
       transform: translate(100%, 0);
     }
+
     100% {
-      transform: translate(0, 0)
+      transform: translate(0, 0);
     }
   }
 
@@ -282,17 +329,21 @@
     0% {
       transform: translate(0, 0);
     }
+
     25% {
-      transform: translate(100%, 0)
+      transform: translate(100%, 0);
     }
+
     50% {
       transform: translate(0, 0);
     }
+
     75% {
       transform: translate(-100%, 0);
     }
+
     100% {
-      transform: translate(0, 0)
+      transform: translate(0, 0);
     }
   }
 </style>
