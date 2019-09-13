@@ -2,6 +2,7 @@
   <div class="main">
     <router-view class="main__background"/>
     <div class="main__content demo">
+      <PauseControl/>
       <DemoControls :links="links"
                     class="demo__controls"/>
     </div>
@@ -15,6 +16,7 @@
   import IridescentBackdropDisks from './components/backgrounds/IridescentBackdropDisks';
   import IridescentBackdropPlanes from './components/backgrounds/IridescentBackdropPlanes';
   import { routes } from './router';
+  import PauseControl from './components/controls/PauseControl';
 
   const getLinks = routesConfig => routesConfig.map((route, index) => ({
     index,
@@ -25,6 +27,7 @@
   export default {
     name: 'Iridescent',
     components: {
+      PauseControl,
       DemoControls,
       IridescentBackdrop,
       IridescentBackdropBeams,

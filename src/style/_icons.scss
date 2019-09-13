@@ -1,9 +1,10 @@
 @import './config';
 
 $icons: (
-  close-outline,
-  mark-github,
-  menu-outline
+        close-outline,
+        pause-outline,
+        mark-github,
+        menu-outline
 );
 
 @each $icon in $icons {

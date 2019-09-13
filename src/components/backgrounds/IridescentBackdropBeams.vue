@@ -53,7 +53,10 @@
   const position = list => list.map((item, index) => {
     const section = 100 / (list.length + 1);
     const left = section * (index + 1);
-    return { ...item, left };
+    return {
+      ...item,
+      left
+    };
   });
   const getBeams = () => position(flatten(BEAM_TYPES.map(beamFactory)));
 
@@ -101,6 +104,10 @@
     position: absolute;
     width: 100vw;
 
+    .animation-paused & * {
+      animation-play-state: paused;
+    }
+
     &__pane {
       left: -50vmax;
       min-height: 200vmax;
@@ -115,20 +122,19 @@
         animation: oscillate $bg-speed linear;
         animation-iteration-count: infinite;
         background: $color-black;
-        background:
-          linear-gradient(
-            to right,
-            $color-red-30,
-            $color-pink-30,
-            $color-purple-30,
-            $color-indigo-30,
-            $color-blue-30,
-            $color-cyan-30,
-            $color-green-30,
-            $color-yellow-30,
-            $color-orange-30,
-            $color-red-30
-          );
+        background: linear-gradient(
+                to right,
+                $color-red-30,
+                $color-pink-30,
+                $color-purple-30,
+                $color-indigo-30,
+                $color-blue-30,
+                $color-cyan-30,
+                $color-green-30,
+                $color-yellow-30,
+                $color-orange-30,
+                $color-red-30
+        );
       }
     }
 
@@ -142,13 +148,12 @@
 
     .beam {
       height: 100vh;
-      background:
-        linear-gradient(
-          to right,
-          transparentize($color-white, 1),
-          transparentize($color-white, 0.1),
-          transparentize($color-white, 1)
-        );
+      background: linear-gradient(
+              to right,
+              transparentize($color-white, 1),
+              transparentize($color-white, 0.1),
+              transparentize($color-white, 1)
+      );
       position: absolute;
       top: 0;
       opacity: 0;
@@ -170,65 +175,45 @@
 
   @keyframes oscillate {
     0% {
-      transform:
-        translate3d(0, 0, 0)
-        rotate3d(0, 0, 1, #{$tilt}deg);
+      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
     }
 
     25% {
-      transform:
-        translate3d(-25%, 0, 0)
-        rotate3d(0, 0, 1, 0deg);
+      transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, 0deg);
     }
 
     50% {
-      transform:
-        translate3d(0, 0, 0)
-        rotate3d(0, 0, 1, -#{$tilt}deg);
+      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -#{$tilt}deg);
     }
 
     75% {
-      transform:
-        translate3d(25%, 0, 0)
-        rotate3d(0, 0, 1, 0deg);
+      transform: translate3d(25%, 0, 0) rotate3d(0, 0, 1, 0deg);
     }
 
     100% {
-      transform:
-        translate3d(0, 0, 0)
-        rotate3d(0, 0, 1, #{$tilt}deg);
+      transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, #{$tilt}deg);
     }
   }
 
   @keyframes oscillate2D {
     0% {
-      transform:
-        translate(0, 0)
-        rotate(#{$tilt}deg);
+      transform: translate(0, 0) rotate(#{$tilt}deg);
     }
 
     25% {
-      transform:
-        translate(-25%, 0)
-        rotate(0deg);
+      transform: translate(-25%, 0) rotate(0deg);
     }
 
     50% {
-      transform:
-        translate(0, 0)
-        rotate(-#{$tilt}deg);
+      transform: translate(0, 0) rotate(-#{$tilt}deg);
     }
 
     75% {
-      transform:
-        translate(25%, 0)
-        rotate(0deg);
+      transform: translate(25%, 0) rotate(0deg);
     }
 
     100% {
-      transform:
-        translate(0, 0)
-        rotate(#{$tilt}deg);
+      transform: translate(0, 0) rotate(#{$tilt}deg);
     }
   }
 

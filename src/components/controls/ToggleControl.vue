@@ -45,7 +45,7 @@
       opacity: 0.25;
       position: absolute;
       right: 0;
-      top: 0.5rem;
+      top: 2.65rem;
 
       @include breakpoint-md-up {
         right: 0.5rem;
