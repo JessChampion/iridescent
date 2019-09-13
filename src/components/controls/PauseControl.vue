@@ -3,8 +3,6 @@
           :aria-pressed="[paused]"
           :title="label"
           @click="togglePaused"
-          @keyup.enter="togglePaused"
-          @keyup.space="togglePaused"
   />
 </template>
 
