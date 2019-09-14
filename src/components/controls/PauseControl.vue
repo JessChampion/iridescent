@@ -8,7 +8,7 @@
 
 <script>
   const TOGGLE_CLASSES = ['icon', 'icon--pause-outline', 'pause-control'];
-  const OPEN_CLASS = 'animation-paused';
+  const OPEN_CLASS = 'no-animation';
 
   const toggleClass = (paused) => {
     if (paused) {

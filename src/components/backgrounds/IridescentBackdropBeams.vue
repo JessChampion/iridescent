@@ -104,7 +104,7 @@
     position: absolute;
     width: 100vw;
 
-    .animation-paused & * {
+    .no-animation & * {
       animation-play-state: paused;
     }
 
